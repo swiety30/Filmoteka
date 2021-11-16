@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieDetailsView: View {
     @EnvironmentObject var filmotekaModel: FilmotekaViewModel
     @Binding var movie: FilmotekaModel.Movie
-    
+    @State var isWatched: Bool = false
     var body: some View {
         VStack {
             ScrollView {
@@ -30,9 +30,17 @@ struct MovieDetailsView: View {
                 StarsView(currentRating: $movie.rating) { rating in
                     filmotekaModel.changeRating(for: movie.id, to: rating)
                 }
-                WatchedButton(isWatched: $movie.isWatched) { watched in
-                    filmotekaModel.changeWatched(movie.id)
+                WatchedButton(isWatched: $isWatched) { watched in
+                    isWatched = !isWatched
                 }
+            }
+        }
+        .onAppear {
+            isWatched = movie.isWatched
+        }
+        .onDisappear {
+            if isWatched != movie.isWatched {
+                filmotekaModel.changeWatched(movie.id)
             }
         }
     }

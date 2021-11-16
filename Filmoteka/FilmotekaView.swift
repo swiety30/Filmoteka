@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct FilmotekaView: View {
-    @ObservedObject var filmotekaViewModel: FilmotekaViewModel
+    @EnvironmentObject var filmotekaViewModel: FilmotekaViewModel
     @StateObject var viewRouter: ViewRouter
-    
+    @State private var showTabBar: Bool = false
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -22,31 +23,35 @@ struct FilmotekaView: View {
                     scrollViewWithWatchedMovies
                 }
                 Spacer()
-                FilmotekaTabBar(viewRouter: viewRouter, size: CGSize(width: geometry.size.width, height: geometry.size.height / 8))
+                if !showTabBar {
+                    FilmotekaTabBar(viewRouter: viewRouter, size: CGSize(width: geometry.size.width, height: geometry.size.height / 8))
+                }
             }
             .edgesIgnoringSafeArea(.bottom)
         }
     }
     
     var scrollViewWithNotWatchedMovies: some View  {
-        ScrollViewWithNavigation(movies: $filmotekaViewModel.toBeWatchedMovies, title: "To Watch")
+        ScrollViewWithNavigation(movies: $filmotekaViewModel.toBeWatchedMovies, showTabBar: $showTabBar, title: "To Watch")
     }
     
     var scrollViewWithWatchedMovies: some View {
-        ScrollViewWithNavigation(movies: $filmotekaViewModel.watchedMovies, title: "Watched")
+        ScrollViewWithNavigation(movies: $filmotekaViewModel.watchedMovies, showTabBar: $showTabBar, title: "Watched")
     }
 }
 
 struct ScrollViewWithNavigation: View {
     @Binding var movies: [FilmotekaModel.Movie]
     @EnvironmentObject var filmotekaModel: FilmotekaViewModel
+    @Binding var showTabBar: Bool
+
     let title: String
     
     var body: some View {
         NavigationView {
             ScrollView {
                 ForEach($movies) { movie in
-                    NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                    NavigationLink(destination: MovieDetailsView(movie: movie), isActive: $showTabBar) {
                         MovieCell(movie: movie)
                     }
                 }
@@ -61,10 +66,8 @@ struct ScrollViewWithNavigation: View {
     }
 }
 
-
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FilmotekaView(filmotekaViewModel: FilmotekaViewModel(), viewRouter: ViewRouter())
+        FilmotekaView(viewRouter: ViewRouter())
     }
 }

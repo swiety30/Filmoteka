@@ -14,7 +14,7 @@ struct FilmotekaApp: App {
 
     var body: some Scene {
         WindowGroup {
-            FilmotekaView(filmotekaViewModel: filmotekaViewModel, viewRouter: viewRouter)
+            FilmotekaView(viewRouter: viewRouter)
                 .environmentObject(filmotekaViewModel)
         }
     }

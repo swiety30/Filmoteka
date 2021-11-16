@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7366C87C27332E7400F0C81B /* FilmotekaTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7366C87B27332E7400F0C81B /* FilmotekaTabBar.swift */; };
+		7366C88527347B9E00F0C81B /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7366C88427347B9E00F0C81B /* PlusButton.swift */; };
+		7366C88927347CFF00F0C81B /* FilmotekaTabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7366C88827347CFF00F0C81B /* FilmotekaTabBarRouter.swift */; };
+		739104A3272884AF005887B3 /* NewMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739104A2272884AF005887B3 /* NewMovieView.swift */; };
+		73CD71C9272D603A00A8B593 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD71C8272D603A00A8B593 /* CategoriesView.swift */; };
+		73CD71CB272D637400A8B593 /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD71CA272D637400A8B593 /* MovieDetailsView.swift */; };
+		73CD71CD272D692800A8B593 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD71CC272D692800A8B593 /* StarsView.swift */; };
+		73D4CBC92720A644001BBE2A /* FilmotekaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBC82720A644001BBE2A /* FilmotekaApp.swift */; };
+		73D4CBCB2720A644001BBE2A /* FilmotekaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBCA2720A644001BBE2A /* FilmotekaView.swift */; };
+		73D4CBCD2720A645001BBE2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D4CBCC2720A645001BBE2A /* Assets.xcassets */; };
+		73D4CBD02720A645001BBE2A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D4CBCF2720A645001BBE2A /* Preview Assets.xcassets */; };
+		73D4CBD72720A664001BBE2A /* FilmotekaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBD62720A664001BBE2A /* FilmotekaViewModel.swift */; };
+		73D4CBD92720A672001BBE2A /* FilmotekaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBD82720A672001BBE2A /* FilmotekaModel.swift */; };
+		73D4CBDC2720B46A001BBE2A /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBDB2720B46A001BBE2A /* MovieCell.swift */; };
+		73D4CBDE2720BBA8001BBE2A /* StarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBDD2720BBA8001BBE2A /* StarShape.swift */; };
+		73E25955273874210017272B /* PausableObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E25954273874210017272B /* PausableObservableObject.swift */; };
+		73E259572738743C0017272B /* VisibilityAwareObservables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E259562738743C0017272B /* VisibilityAwareObservables.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7366C87B27332E7400F0C81B /* FilmotekaTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaTabBar.swift; sourceTree = "<group>"; };
+		7366C88427347B9E00F0C81B /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
+		7366C88827347CFF00F0C81B /* FilmotekaTabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaTabBarRouter.swift; sourceTree = "<group>"; };
+		739104A2272884AF005887B3 /* NewMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMovieView.swift; sourceTree = "<group>"; };
+		73CD71C8272D603A00A8B593 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		73CD71CA272D637400A8B593 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		73CD71CC272D692800A8B593 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		73D4CBC52720A644001BBE2A /* Filmoteka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filmoteka.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		73D4CBC82720A644001BBE2A /* FilmotekaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaApp.swift; sourceTree = "<group>"; };
+		73D4CBCA2720A644001BBE2A /* FilmotekaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaView.swift; sourceTree = "<group>"; };
+		73D4CBCC2720A645001BBE2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		73D4CBCF2720A645001BBE2A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		73D4CBD62720A664001BBE2A /* FilmotekaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaViewModel.swift; sourceTree = "<group>"; };
+		73D4CBD82720A672001BBE2A /* FilmotekaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaModel.swift; sourceTree = "<group>"; };
+		73D4CBDB2720B46A001BBE2A /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		73D4CBDD2720BBA8001BBE2A /* StarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarShape.swift; sourceTree = "<group>"; };
+		73E25954273874210017272B /* PausableObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausableObservableObject.swift; sourceTree = "<group>"; };
+		73E259562738743C0017272B /* VisibilityAwareObservables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityAwareObservables.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73D4CBC22720A644001BBE2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7366C87D27332E7800F0C81B /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7366C87B27332E7400F0C81B /* FilmotekaTabBar.swift */,
+				7366C88827347CFF00F0C81B /* FilmotekaTabBarRouter.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		73D4CBBC2720A644001BBE2A = {
+			isa = PBXGroup;
+			children = (
+				73D4CBC72720A644001BBE2A /* Filmoteka */,
+				73D4CBC62720A644001BBE2A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73D4CBC62720A644001BBE2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73D4CBC52720A644001BBE2A /* Filmoteka.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73D4CBC72720A644001BBE2A /* Filmoteka */ = {
+			isa = PBXGroup;
+			children = (
+				73D4CBC82720A644001BBE2A /* FilmotekaApp.swift */,
+				7366C87D27332E7800F0C81B /* TabBar */,
+				73D4CBDA2720B45D001BBE2A /* Views */,
+				73D4CBCC2720A645001BBE2A /* Assets.xcassets */,
+				73D4CBCE2720A645001BBE2A /* Preview Content */,
+				73D4CBCA2720A644001BBE2A /* FilmotekaView.swift */,
+				73D4CBD62720A664001BBE2A /* FilmotekaViewModel.swift */,
+				73D4CBD82720A672001BBE2A /* FilmotekaModel.swift */,
+			);
+			path = Filmoteka;
+			sourceTree = "<group>";
+		};
+		73D4CBCE2720A645001BBE2A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				73D4CBCF2720A645001BBE2A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		73D4CBDA2720B45D001BBE2A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				73D4CBDB2720B46A001BBE2A /* MovieCell.swift */,
+				73D4CBDD2720BBA8001BBE2A /* StarShape.swift */,
+				739104A2272884AF005887B3 /* NewMovieView.swift */,
+				73CD71C8272D603A00A8B593 /* CategoriesView.swift */,
+				73CD71CA272D637400A8B593 /* MovieDetailsView.swift */,
+				73CD71CC272D692800A8B593 /* StarsView.swift */,
+				7366C88427347B9E00F0C81B /* PlusButton.swift */,
+				73E25953273874110017272B /* Helpers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		73E25953273874110017272B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				73E25954273874210017272B /* PausableObservableObject.swift */,
+				73E259562738743C0017272B /* VisibilityAwareObservables.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73D4CBC42720A644001BBE2A /* Filmoteka */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73D4CBD32720A645001BBE2A /* Build configuration list for PBXNativeTarget "Filmoteka" */;
+			buildPhases = (
+				73D4CBC12720A644001BBE2A /* Sources */,
+				73D4CBC22720A644001BBE2A /* Frameworks */,
+				73D4CBC32720A644001BBE2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Filmoteka;
+			productName = Filmoteka;
+			productReference = 73D4CBC52720A644001BBE2A /* Filmoteka.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73D4CBBD2720A644001BBE2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					73D4CBC42720A644001BBE2A = {
+						CreatedOnToolsVersion = 13.0;
+					};
+				};
+			};
+			buildConfigurationList = 73D4CBC02720A644001BBE2A /* Build configuration list for PBXProject "Filmoteka" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 73D4CBBC2720A644001BBE2A;
+			productRefGroup = 73D4CBC62720A644001BBE2A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73D4CBC42720A644001BBE2A /* Filmoteka */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73D4CBC32720A644001BBE2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73D4CBD02720A645001BBE2A /* Preview Assets.xcassets in Resources */,
+				73D4CBCD2720A645001BBE2A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73D4CBC12720A644001BBE2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73CD71CD272D692800A8B593 /* StarsView.swift in Sources */,
+				73CD71C9272D603A00A8B593 /* CategoriesView.swift in Sources */,
+				739104A3272884AF005887B3 /* NewMovieView.swift in Sources */,
+				7366C88927347CFF00F0C81B /* FilmotekaTabBarRouter.swift in Sources */,
+				73D4CBD92720A672001BBE2A /* FilmotekaModel.swift in Sources */,
+				7366C87C27332E7400F0C81B /* FilmotekaTabBar.swift in Sources */,
+				73E25955273874210017272B /* PausableObservableObject.swift in Sources */,
+				73D4CBCB2720A644001BBE2A /* FilmotekaView.swift in Sources */,
+				73D4CBC92720A644001BBE2A /* FilmotekaApp.swift in Sources */,
+				73D4CBDC2720B46A001BBE2A /* MovieCell.swift in Sources */,
+				73CD71CB272D637400A8B593 /* MovieDetailsView.swift in Sources */,
+				73E259572738743C0017272B /* VisibilityAwareObservables.swift in Sources */,
+				73D4CBD72720A664001BBE2A /* FilmotekaViewModel.swift in Sources */,
+				73D4CBDE2720BBA8001BBE2A /* StarShape.swift in Sources */,
+				7366C88527347B9E00F0C81B /* PlusButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73D4CBD12720A645001BBE2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		73D4CBD22720A645001BBE2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73D4CBD42720A645001BBE2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Filmoteka/Preview Content\"";
+				DEVELOPMENT_TEAM = YDWUWN77V6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PawelSwiatek.Filmoteka;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		73D4CBD52720A645001BBE2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Filmoteka/Preview Content\"";
+				DEVELOPMENT_TEAM = YDWUWN77V6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PawelSwiatek.Filmoteka;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73D4CBC02720A644001BBE2A /* Build configuration list for PBXProject "Filmoteka" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73D4CBD12720A645001BBE2A /* Debug */,
+				73D4CBD22720A645001BBE2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73D4CBD32720A645001BBE2A /* Build configuration list for PBXNativeTarget "Filmoteka" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73D4CBD42720A645001BBE2A /* Debug */,
+				73D4CBD52720A645001BBE2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73D4CBBD2720A644001BBE2A /* Project object */;
+}

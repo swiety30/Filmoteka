@@ -16,7 +16,7 @@ struct CategoriesView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(filmotekaModel.categories, id: \.self) { item in
+                ForEach(filmotekaModel.categories) { item in
                     HStack {
                         Text(item.name)
                         if item.name == movieCategory {
@@ -30,7 +30,9 @@ struct CategoriesView: View {
                         movieCategory = item.name
                         presentationMode.wrappedValue.dismiss()
                     }
-
+                }
+                .onDelete { index in
+                    filmotekaModel.removeCategory(at: index)
                 }
 
                 TextField("New Category", text: $newCategory, onCommit: {

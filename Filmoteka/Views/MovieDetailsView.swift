@@ -10,7 +10,12 @@ import SwiftUI
 struct MovieDetailsView: View {
     @EnvironmentObject var filmotekaModel: FilmotekaViewModel
     @Binding var movie: FilmotekaModel.Movie
-    @State var isWatched: Bool = false
+    @State private var showCategories: Bool = false
+
+    @State private var isWatched: Bool = false
+    @State private var currentRating: FilmotekaModel.Movie.Rating = .one
+    @State private var currentCategoryName: String = ""
+
     var body: some View {
         VStack {
             ScrollView {
@@ -23,24 +28,29 @@ struct MovieDetailsView: View {
                 Text(movie.name)
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
-                Text(movie.category.name)
-                    .font(.caption)
+                NavigationLink(destination: CategoriesView(movieCategory: $currentCategoryName), isActive: $showCategories) {
+                    Text(currentCategoryName)
+                        .font(.caption)
+                }
                 Text(movie.year)
                     .font(.caption)
-                StarsView(currentRating: $movie.rating) { rating in
-                    filmotekaModel.changeRating(for: movie.id, to: rating)
+                StarsView(currentRating: $currentRating) { rating in
+                    currentRating = rating
                 }
                 WatchedButton(isWatched: $isWatched) { watched in
                     isWatched = !isWatched
                 }
             }
         }
+        
         .onAppear {
+            if currentCategoryName == "" { currentCategoryName = movie.category.name }
             isWatched = movie.isWatched
+            currentRating = movie.rating
         }
         .onDisappear {
-            if isWatched != movie.isWatched {
-                filmotekaModel.changeWatched(movie.id)
+            if !showCategories {
+                filmotekaModel.updateMovie(movieId: movie.id, isWatched: isWatched, category: filmotekaModel.category(named: currentCategoryName), rating: currentRating)
             }
         }
     }

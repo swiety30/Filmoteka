@@ -33,13 +33,12 @@ struct NewMovieView: View {
 
     var addButton: some View {
         Button {
-            //refactor categories!
-            filmotekaModel.addMovie(movieName, category: FilmotekaModel.Category(id: 1, name: movieCategory))
+            filmotekaModel.addMovie(movieName, category: filmotekaModel.category(named: movieCategory))
             presentationMode.wrappedValue.dismiss()
         } label: {
             Text("Add")
         }
-        .disabled(movieName == "" || movieYear == "")
+        .disabled(movieName == "" || movieYear == "" || movieCategory == "")
     }
     
     @State private var movieName: String = ""
@@ -61,7 +60,7 @@ struct NewMovieView: View {
         }
     }
 
-    @State private var movieCategory: String = "Default"
+    @State private var movieCategory: String = "Choose.."
     var categorySection: some View {
         NavigationLink(destination: CategoriesView(movieCategory: $movieCategory)) {
             HStack() {

@@ -8,8 +8,7 @@
 import Foundation
 
 struct FilmotekaModel {
-    struct Movie: Hashable, Identifiable, Codable {
-        static let defaultCategory = Category(id: 0, name: "Default")
+    struct Movie: Hashable, Identifiable, Codable, Equatable {
         var id: Int
         var name: String
         var year: String = "2011"
@@ -17,7 +16,7 @@ struct FilmotekaModel {
         var category: Category
         var rating: Rating
 
-        enum Rating: Int, CaseIterable, Codable {
+        enum Rating: Int, CaseIterable, Codable, Equatable {
             case one = 1, two, three, four, five
         }
 
@@ -30,7 +29,7 @@ struct FilmotekaModel {
         }
     }
 
-    struct Category: Hashable, Identifiable, Codable {
+    struct Category: Hashable, Identifiable, Codable, Equatable {
         var id: Int
         var name: String
 

@@ -50,9 +50,23 @@ struct ScrollViewWithNavigation: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach($movies) { movie in
-                    NavigationLink(destination: MovieDetailsView(movie: movie), isActive: $showTabBar) {
-                        MovieCell(movie: movie)
+                ForEach(filmotekaModel.categories) { category in
+                    if !filmotekaModel.isCategoryEmpty(category, for: movies) {
+                        Section {
+                            ForEach($movies) { movie in
+                                if movie.wrappedValue.category == category {
+                                    NavigationLink(destination: MovieDetailsView(movie: movie), isActive: $showTabBar) {
+                                        MovieCell(movie: movie)
+                                    }
+                                }
+                            }
+                        } header: {
+                            HStack {
+                                Text(category.name).frame(alignment: .leading)
+                                Spacer()
+                            }
+                            .padding()
+                        }
                     }
                 }
             }

@@ -22,8 +22,6 @@
 		73D4CBD92720A672001BBE2A /* FilmotekaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBD82720A672001BBE2A /* FilmotekaModel.swift */; };
 		73D4CBDC2720B46A001BBE2A /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBDB2720B46A001BBE2A /* MovieCell.swift */; };
 		73D4CBDE2720BBA8001BBE2A /* StarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D4CBDD2720BBA8001BBE2A /* StarShape.swift */; };
-		73E25955273874210017272B /* PausableObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E25954273874210017272B /* PausableObservableObject.swift */; };
-		73E259572738743C0017272B /* VisibilityAwareObservables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E259562738743C0017272B /* VisibilityAwareObservables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +41,6 @@
 		73D4CBD82720A672001BBE2A /* FilmotekaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaModel.swift; sourceTree = "<group>"; };
 		73D4CBDB2720B46A001BBE2A /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		73D4CBDD2720BBA8001BBE2A /* StarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarShape.swift; sourceTree = "<group>"; };
-		73E25954273874210017272B /* PausableObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausableObservableObject.swift; sourceTree = "<group>"; };
-		73E259562738743C0017272B /* VisibilityAwareObservables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityAwareObservables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,18 +112,8 @@
 				73CD71CA272D637400A8B593 /* MovieDetailsView.swift */,
 				73CD71CC272D692800A8B593 /* StarsView.swift */,
 				7366C88427347B9E00F0C81B /* PlusButton.swift */,
-				73E25953273874110017272B /* Helpers */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		73E25953273874110017272B /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				73E25954273874210017272B /* PausableObservableObject.swift */,
-				73E259562738743C0017272B /* VisibilityAwareObservables.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,12 +192,10 @@
 				7366C88927347CFF00F0C81B /* FilmotekaTabBarRouter.swift in Sources */,
 				73D4CBD92720A672001BBE2A /* FilmotekaModel.swift in Sources */,
 				7366C87C27332E7400F0C81B /* FilmotekaTabBar.swift in Sources */,
-				73E25955273874210017272B /* PausableObservableObject.swift in Sources */,
 				73D4CBCB2720A644001BBE2A /* FilmotekaView.swift in Sources */,
 				73D4CBC92720A644001BBE2A /* FilmotekaApp.swift in Sources */,
 				73D4CBDC2720B46A001BBE2A /* MovieCell.swift in Sources */,
 				73CD71CB272D637400A8B593 /* MovieDetailsView.swift in Sources */,
-				73E259572738743C0017272B /* VisibilityAwareObservables.swift in Sources */,
 				73D4CBD72720A664001BBE2A /* FilmotekaViewModel.swift in Sources */,
 				73D4CBDE2720BBA8001BBE2A /* StarShape.swift in Sources */,
 				7366C88527347B9E00F0C81B /* PlusButton.swift in Sources */,

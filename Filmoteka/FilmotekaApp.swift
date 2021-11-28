@@ -9,8 +9,8 @@ import SwiftUI
 
 @main
 struct FilmotekaApp: App {
-    @StateObject var filmotekaViewModel = FilmotekaViewModel()
     @StateObject var viewRouter = ViewRouter()
+    @StateObject var filmotekaViewModel = FilmotekaViewModel()
 
     var body: some Scene {
         WindowGroup {

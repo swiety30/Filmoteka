@@ -44,9 +44,12 @@ struct MovieDetailsView: View {
         }
         
         .onAppear {
-            if currentCategoryName == "" { currentCategoryName = movie.category.name }
-            isWatched = movie.isWatched
-            currentRating = movie.rating
+            if currentCategoryName == "" {
+                currentCategoryName = movie.category.name
+                isWatched = movie.isWatched
+                currentRating = movie.rating
+            }
+
         }
         .onDisappear {
             if !showCategories {

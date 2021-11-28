@@ -32,41 +32,38 @@ struct FilmotekaView: View {
     }
     
     var scrollViewWithNotWatchedMovies: some View  {
-        ScrollViewWithNavigation(movies: $filmotekaViewModel.toBeWatchedMovies, showTabBar: $showTabBar, title: "To Watch")
+        ScrollViewWithNavigation(filteredMovies: $filmotekaViewModel.toBeWatchedMovies, showTabBar: $showTabBar, title: "To Watch")
     }
     
     var scrollViewWithWatchedMovies: some View {
-        ScrollViewWithNavigation(movies: $filmotekaViewModel.watchedMovies, showTabBar: $showTabBar, title: "Watched")
+        ScrollViewWithNavigation(filteredMovies: $filmotekaViewModel.watchedMovies, showTabBar: $showTabBar, title: "Watched")
     }
 }
 
 struct ScrollViewWithNavigation: View {
-    @Binding var movies: [FilmotekaModel.Movie]
+    @Binding var filteredMovies: [MovieFilterModel.FilteredMovies]
     @EnvironmentObject var filmotekaModel: FilmotekaViewModel
     @Binding var showTabBar: Bool
 
     let title: String
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(filmotekaModel.categories) { category in
-                    if !filmotekaModel.isCategoryEmpty(category, for: movies) {
-                        Section {
-                            ForEach($movies) { movie in
-                                if movie.wrappedValue.category == category {
-                                    NavigationLink(destination: MovieDetailsView(movie: movie), isActive: $showTabBar) {
-                                        MovieCell(movie: movie)
-                                    }
-                                }
+                ForEach($filteredMovies) { filter in
+                    Section {
+                        ForEach(filter.filterMovies) { movie in
+                            NavigationLink(destination: MovieDetailsView(movie: movie), isActive: $showTabBar) {
+                                MovieCell(movie: movie)
                             }
-                        } header: {
-                            HStack {
-                                Text(category.name).frame(alignment: .leading)
-                                Spacer()
-                            }
-                            .padding()
                         }
+                    } header: {
+                        HStack {
+                            TextField("", text: filter.filterName)
+                                .frame(alignment: .leading)
+                            Spacer()
+                        }
+                        .padding()
                     }
                 }
             }
@@ -74,6 +71,9 @@ struct ScrollViewWithNavigation: View {
                 ToolbarItem(placement: .principal) {
                     Text(title)
                         .font(.headline)
+                }
+                ToolbarItem() {
+                    MovieFilterView(filterViewModel: filmotekaModel.filterViewModel)
                 }
             }
         }

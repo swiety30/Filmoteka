@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MovieCell: View {
-    @Binding var movie: FilmotekaModel.Movie
-
+    @Binding var movie: Movie
     var body: some View {
         HStack {
             Image("tombraider")
@@ -31,8 +30,9 @@ struct MovieCell: View {
                     StarsView(currentRating: $movie.rating)
                         .disabled(true)
                 }
-            }.padding(.vertical)
+            }.padding(.horizontal)
         }
-        .padding()
+        .background(Color(red: 235/255, green: 245/255, blue: 238/255))
+        .cornerRadius(20)
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FilmotekaTabBar: View {
-    @StateObject var viewRouter: ViewRouter
+    @ObservedObject var viewRouter: ViewRouter
     let size: CGSize
 
     var body: some View {
@@ -24,7 +24,7 @@ struct FilmotekaTabBar: View {
 }
 
 struct TabBarIcon: View {
-    @StateObject var viewRouter: ViewRouter
+    @ObservedObject var viewRouter: ViewRouter
     let assignedView: ViewToDisplay
     let width, height: CGFloat
     let systemIconName, tabName: String

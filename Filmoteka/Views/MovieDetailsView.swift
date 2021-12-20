@@ -8,49 +8,101 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
-    @EnvironmentObject var filmotekaModel: FilmotekaViewModel
-    @Binding var movie: FilmotekaModel.Movie
+    @EnvironmentObject var movieHandler: MoviesHandler
+    @Binding var movie: Movie
     @State private var showCategories: Bool = false
 
     @State private var isWatched: Bool = false
-    @State private var currentRating: FilmotekaModel.Movie.Rating = .one
+    @State private var currentRating: Movie.Rating = .one
     @State private var currentCategoryName: String = ""
+    @State private var currentNotes: String = ""
 
     var body: some View {
         VStack {
-            ScrollView {
-                Image("tombraider")
-                    .resizable()
-                    .frame(width: 150)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .cornerRadius(20)
+            GeometryReader { geometry in
+                ScrollView(showsIndicators: false) {
+
+                    ZStack(alignment: .bottomTrailing) {
+                        Image("tombraider2")
+                            .resizable()
+                            .frame(width: geometry.size.width, height: geometry.size.width/2)
+                            .scaledToFit()
+
+                        ZStack(alignment: .bottomTrailing) {
+                            Color.black
+                                .opacity(0.5)
+                            VStack(alignment: .trailing) {
+                                Text(movie.name)
+                                    .font(.bold(.largeTitle)())
+                                Text(movie.year)
+                                    .font(.bold(.caption)())
+                            }
+                            .foregroundColor(.white)
+                            .padding()
+                        }
+                        .frame(width: geometry.size.width, height: geometry.size.width / 2 / 3)
+                    }
+                    .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
                     .shadow(radius: 10)
-                Text(movie.name)
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
-                NavigationLink(destination: CategoriesView(movieCategory: $currentCategoryName), isActive: $showCategories) {
-                    Text(currentCategoryName)
-                        .font(.caption)
-                }
-                Text(movie.year)
-                    .font(.caption)
-                StarsView(currentRating: $currentRating) { rating in
-                    currentRating = rating
-                }
-                WatchedButton(isWatched: $isWatched) { watched in
-                    isWatched = !isWatched
+                    HStack {
+                        Text("Category: ")
+                        Spacer()
+                        NavigationLink(destination: CategoriesView(movieCategory: $currentCategoryName), isActive: $showCategories) {
+                            HStack {
+                                Text(currentCategoryName)
+                                Image(systemName: "arrow.right.to.line.circle")
+                            }
+                        }
+                    }
+                    .font(.title2)
+                    .foregroundColor(.black)
+                    .padding()
+
+                    DividerWithText(text: "My Rating", lineColor: .gray, textColor: .black)
+
+                    StarsView(currentRating: $currentRating, starSize: 50) { rating in
+                        currentRating = rating
+                    }
+                    .padding()
+
+                    DividerWithText(text: "My Notes", lineColor: .gray, textColor: .black)
+
+                    ExpandableTextEditorWithPlaceholder(placeholderText: "Please add notes...", width: geometry.size.width - 50, bindingText: $currentNotes)
+                        .cornerRadius(5)
+                        .padding()
+
+                    Divider()
+                        .foregroundColor(.gray)
+                        .padding()
+
+                    Text(movie.description)
+                        .padding(.horizontal)
+
+                    WatchedButton(isWatched: $isWatched) { watched in
+                        isWatched = !isWatched
+                    }
+                    .padding()
+
+                    Rectangle()
+                        .frame(width: 100, height: 30)
+                        .foregroundColor(.clear)
                 }
             }
         }
-        
+        .navigationBarTitleDisplayMode(.inline)
+        .background(Color(red: 191/255, green: 209/255, blue: 229/255))
         .onAppear {
-            if currentCategoryName == "" { currentCategoryName = movie.category.name }
-            isWatched = movie.isWatched
-            currentRating = movie.rating
+            if currentCategoryName == "" {
+                currentCategoryName = movie.category
+                isWatched = movie.isWatched
+                currentRating = movie.rating
+                currentNotes = movie.notes
+            }
+
         }
         .onDisappear {
             if !showCategories {
-                filmotekaModel.updateMovie(movieId: movie.id, isWatched: isWatched, category: filmotekaModel.category(named: currentCategoryName), rating: currentRating)
+                movieHandler.updateMovie(movieId: movie.id, isWatched: isWatched, category: currentCategoryName, rating: currentRating, notes: currentNotes)
             }
         }
     }

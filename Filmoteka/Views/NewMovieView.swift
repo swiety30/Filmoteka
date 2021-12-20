@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewMovieView: View {
-    @EnvironmentObject var filmotekaModel: FilmotekaViewModel
+    @EnvironmentObject var movieHandler: MoviesHandler
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -33,7 +33,7 @@ struct NewMovieView: View {
 
     var addButton: some View {
         Button {
-            filmotekaModel.addMovie(movieName, category: filmotekaModel.category(named: movieCategory))
+            movieHandler.addMovie(movieName, category: movieCategory)
             presentationMode.wrappedValue.dismiss()
         } label: {
             Text("Add")

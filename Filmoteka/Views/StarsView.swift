@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct StarsView: View {
-    @Binding var currentRating: FilmotekaModel.Movie.Rating
-    var onGestureTap: ((FilmotekaModel.Movie.Rating) -> ())?
+    @Binding var currentRating: Movie.Rating
+    var starSize: CGFloat = 20
+    var onGestureTap: ((Movie.Rating) -> ())?
 
     var body: some View {
         HStack {
-            ForEach(FilmotekaModel.Movie.Rating.allCases, id: \.self) { rating in
+            ForEach(Movie.Rating.allCases, id: \.self) { rating in
                 Group {
                     if isFilled(rating) {
                         filledStar
@@ -30,7 +31,7 @@ struct StarsView: View {
 
     var filledStar: some View {
         RoundedStar()
-            .frame(width: 20, height: 20)
+            .frame(width: starSize, height: starSize)
             .foregroundColor(.yellow)
     }
 
@@ -39,15 +40,15 @@ struct StarsView: View {
             RoundedStar(cornerRadius: 0)
                 .stroke(lineWidth: 2.0)
                 .foregroundColor(.yellow)
-                .frame(width: 20, height: 20)
+                .frame(width: starSize, height: starSize)
 
             RoundedStar(cornerRadius: 0)
                 .foregroundColor(.white)
-                .frame(width: 20, height: 20)
+                .frame(width: starSize, height: starSize)
         }
     }
 
-    private func isFilled(_ rating: FilmotekaModel.Movie.Rating) -> Bool {
+    private func isFilled(_ rating: Movie.Rating) -> Bool {
         currentRating.rawValue >= rating.rawValue
     }
 }

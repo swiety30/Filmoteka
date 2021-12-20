@@ -10,16 +10,16 @@ import SwiftUI
 struct CategoriesView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var movieCategory: String
-    @EnvironmentObject var filmotekaModel: FilmotekaViewModel
+    @EnvironmentObject var movieHandler: MoviesHandler
     @State private var newCategory: String = ""
 
     var body: some View {
         VStack {
             List {
-                ForEach(filmotekaModel.categories) { item in
+                ForEach(movieHandler.allCategories, id: \.self) { item in
                     HStack {
-                        Text(item.name)
-                        if item.name == movieCategory {
+                        Text(item)
+                        if item == movieCategory {
                             Spacer()
                             Rectangle()
                                 .foregroundColor(.green)
@@ -27,16 +27,16 @@ struct CategoriesView: View {
                         }
                     }
                     .onTapGesture {
-                        movieCategory = item.name
+                        movieCategory = item
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
                 .onDelete { index in
-                    filmotekaModel.removeCategory(at: index)
+//                    filmotekaModel.removeCategory(at: index)
                 }
 
                 TextField("New Category", text: $newCategory, onCommit: {
-                    filmotekaModel.addCategory(newCategory)
+//                    filmotekaModel.addCategory(newCategory)
                     movieCategory = newCategory
                     newCategory = ""
                     presentationMode.wrappedValue.dismiss()

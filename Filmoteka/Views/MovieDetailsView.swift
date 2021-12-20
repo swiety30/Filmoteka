@@ -16,34 +16,40 @@ struct MovieDetailsView: View {
     @State private var currentRating: Movie.Rating = .one
     @State private var currentCategoryName: String = ""
     @State private var currentNotes: String = ""
-
+    @State private var isFavourite: Bool = false
     var body: some View {
         VStack {
             GeometryReader { geometry in
                 ScrollView(showsIndicators: false) {
-
-                    ZStack(alignment: .bottomTrailing) {
-                        Image("tombraider2")
-                            .resizable()
-                            .frame(width: geometry.size.width, height: geometry.size.width/2)
-                            .scaledToFit()
-
+                    ZStack(alignment: .topTrailing) {
                         ZStack(alignment: .bottomTrailing) {
-                            Color.black
-                                .opacity(0.5)
-                            VStack(alignment: .trailing) {
-                                Text(movie.name)
-                                    .font(.bold(.largeTitle)())
-                                Text(movie.year)
-                                    .font(.bold(.caption)())
+                            Image("tombraider2")
+                                .resizable()
+                                .frame(width: geometry.size.width, height: geometry.size.width/2)
+                                .scaledToFit()
+
+                            ZStack(alignment: .bottomTrailing) {
+                                Color.black
+                                    .opacity(0.5)
+                                VStack(alignment: .trailing) {
+                                    Text(movie.name)
+                                        .font(.bold(.largeTitle)())
+                                    Text(movie.year)
+                                        .font(.bold(.caption)())
+                                }
+                                .foregroundColor(.white)
+                                .padding()
                             }
-                            .foregroundColor(.white)
-                            .padding()
+                            .frame(width: geometry.size.width, height: geometry.size.width / 2 / 3)
                         }
-                        .frame(width: geometry.size.width, height: geometry.size.width / 2 / 3)
+                        .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+                        .shadow(radius: 10)
+
+                        FavouriteButton(isFavourite: $isFavourite)  { favourite in
+                            isFavourite = !isFavourite
+                        }
+                        .padding()
                     }
-                    .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-                    .shadow(radius: 10)
                     HStack {
                         Text("Category: ")
                         Spacer()
@@ -95,6 +101,7 @@ struct MovieDetailsView: View {
             if currentCategoryName == "" {
                 currentCategoryName = movie.category
                 isWatched = movie.isWatched
+                isFavourite = movie.isFavourite
                 currentRating = movie.rating
                 currentNotes = movie.notes
             }
@@ -102,7 +109,12 @@ struct MovieDetailsView: View {
         }
         .onDisappear {
             if !showCategories {
-                movieHandler.updateMovie(movieId: movie.id, isWatched: isWatched, category: currentCategoryName, rating: currentRating, notes: currentNotes)
+                movieHandler.updateMovie(movieId: movie.id,
+                                         isWatched: isWatched,
+                                         isFavourite: isFavourite,
+                                         category: currentCategoryName,
+                                         rating: currentRating,
+                                         notes: currentNotes)
             }
         }
     }

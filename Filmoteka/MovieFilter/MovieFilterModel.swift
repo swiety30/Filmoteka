@@ -12,11 +12,11 @@ public struct MovieFilterModel {
         public var id: Int {
             get { hashValue }
         }
-        case rating, year, alphabet, category
+        case rating, year, alphabet, category, favourite
     }
 
     struct FilteredMovies: Identifiable {
-        public var id: Int
+        var id = UUID()
         var filterName: String
         var filterMovies: [Movie]
     }

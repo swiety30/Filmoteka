@@ -28,9 +28,10 @@ class MoviesHandler: ObservableObject {
         movies.append(Movie(name: named, isWatched: isWatched, category: category))
     }
 
-    func updateMovie(movieId: Movie.ID, isWatched: Bool, category: Category, rating: Movie.Rating, notes: String) {
+    func updateMovie(movieId: Movie.ID, isWatched: Bool, isFavourite: Bool, category: Category, rating: Movie.Rating, notes: String) {
         guard let index = getIndexOfMovie(with: movieId) else { return }
         movies[index].isWatched = isWatched
+        movies[index].isFavourite = isFavourite
         movies[index].category = category
         movies[index].rating = rating
         movies[index].notes = notes

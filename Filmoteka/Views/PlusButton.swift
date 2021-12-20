@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct plusButton: View {
+struct PlusButton: View {
     let width, height: CGFloat
     @State private var isPresentingNewMoviePopover = false
 

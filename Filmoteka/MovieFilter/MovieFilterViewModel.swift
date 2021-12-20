@@ -22,7 +22,6 @@ class MovieFilterViewModel: ObservableObject {
 
     public func filtered(_ movies: [Movie], _ categories: [Category]) -> [MovieFilterModel.FilteredMovies] {
         var filteredDict: [MovieFilterModel.FilteredMovies] = []
-        var uniqueId = 0
         switch currentFilter {
         case .rating:
             Movie.Rating.allCases.sorted { $0.rawValue > $1.rawValue }
@@ -30,8 +29,7 @@ class MovieFilterViewModel: ObservableObject {
             .forEach { rating in
                 let filteredMovies = movies.filter { $0.rating == rating }
                 if !filteredMovies.isEmpty {
-                    filteredDict.append(MovieFilterModel.FilteredMovies(id: uniqueId, filterName: rating.name(), filterMovies: filteredMovies))
-                    uniqueId += 1
+                    filteredDict.append(MovieFilterModel.FilteredMovies(filterName: rating.name(), filterMovies: filteredMovies))
                 }
             }
         case .category:
@@ -40,8 +38,7 @@ class MovieFilterViewModel: ObservableObject {
             .forEach { category in
                 let filteredMovies = movies.filter { $0.category == category }
                 if !filteredMovies.isEmpty {
-                    filteredDict.append(MovieFilterModel.FilteredMovies(id: uniqueId, filterName: category, filterMovies: filteredMovies))
-                    uniqueId += 1
+                    filteredDict.append(MovieFilterModel.FilteredMovies(filterName: category, filterMovies: filteredMovies))
                 }
             }
         case .year:
@@ -51,8 +48,7 @@ class MovieFilterViewModel: ObservableObject {
             .forEach { year in
                 let filteredMovies = movies.filter { $0.year == year }
                 if !filteredMovies.isEmpty {
-                    filteredDict.append(MovieFilterModel.FilteredMovies(id: uniqueId, filterName: year, filterMovies: filteredMovies))
-                    uniqueId += 1
+                    filteredDict.append(MovieFilterModel.FilteredMovies(filterName: year, filterMovies: filteredMovies))
                 }
             }
 
@@ -63,12 +59,14 @@ class MovieFilterViewModel: ObservableObject {
             .forEach { letter in
                 let filteredMovies = movies.filter { $0.name.starts(with: String(letter)) }
                 if !filteredMovies.isEmpty {
-                    filteredDict.append(MovieFilterModel.FilteredMovies(id: uniqueId, filterName: String(letter).capitalized, filterMovies: filteredMovies))
-                    uniqueId += 1
+                    filteredDict.append(MovieFilterModel.FilteredMovies(filterName: String(letter).capitalized, filterMovies: filteredMovies))
                 }
             }
-        }
 
+        case .favourite:
+            let filteredMovies = movies.filter { $0.isFavourite }
+            filteredDict.append(MovieFilterModel.FilteredMovies(filterName: "Favourites", filterMovies: filteredMovies))
+        }
         return filteredDict
     }
 }

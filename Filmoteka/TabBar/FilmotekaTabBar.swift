@@ -14,7 +14,7 @@ struct FilmotekaTabBar: View {
     var body: some View {
         HStack {
             TabBarIcon(viewRouter: viewRouter, assignedView: .notWatched, width: size.width / 3, height: size.height / 4, systemIconName: "homekit", tabName: "to watch")
-            plusButton(width: size.width, height: size.height)
+            PlusButton(width: size.width, height: size.height)
                 .offset(y: -size.height / 2)
             TabBarIcon(viewRouter: viewRouter, assignedView: .watched, width: size.width / 3, height: size.height / 4, systemIconName: "homekit", tabName: "watched")
         }

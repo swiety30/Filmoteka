@@ -14,6 +14,7 @@ struct Movie: Hashable, Identifiable, Codable, Equatable {
     var description: String
     var notes: String
     var isWatched: Bool
+    var isFavourite: Bool
     var category: Category
     var rating: Rating
     
@@ -33,11 +34,13 @@ struct Movie: Hashable, Identifiable, Codable, Equatable {
     init(name: String,
          year: String = "2011",
          isWatched: Bool,
+         isFavourite: Bool = false,
          category: Category,
          rating: Rating = .three) {
         self.name = name
         self.year = year
         self.isWatched = isWatched
+        self.isFavourite = isFavourite
         self.category = category
         self.rating = rating
         self.notes = ""

@@ -11,17 +11,25 @@ struct MovieCell: View {
     @Binding var movie: Movie
     var body: some View {
         HStack {
-            Image("tombraider")
-                .resizable()
-                .frame(width: 150)
-                .aspectRatio(2/3, contentMode: .fit)
-                .cornerRadius(20)
-                .shadow(radius: 10)
+            ZStack(alignment: .topLeading) {
+                Image("tombraider")
+                    .resizable()
+                    .frame(height: 200)
+                    .aspectRatio(2/3, contentMode: .fit)
+                    .shadow(radius: 10)
+
+                if movie.isFavourite {
+                    Banner(width: 30, height: 70,
+                           content: RoundedStar()
+                            .foregroundColor(.yellow))
+                        .padding(.horizontal)
+                }
+            }
             Spacer()
             VStack(alignment: .trailing) {
                 Text(movie.name)
                     .font(.largeTitle)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.trailing)
                     .foregroundColor(.black)
                 Text(movie.year)
                     .font(.caption)

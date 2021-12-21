@@ -22,22 +22,21 @@ struct MoviesScrollView: View {
                     .padding()
                 } else {
                     ForEach($viewModel.filteredMovies) { filter in
-                        Section {
-                            ForEach(filter.filterMovies) { movie in
-                                NavigationLink(destination: MovieDetailsView(movie: movie)) {
-                                    MovieCell(movie: movie)
+                        VStack(alignment: .leading) {
+                            Section {
+                                ForEach(filter.filterMovies) { movie in
+                                    NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                                        MovieCell(movie: movie)
+                                    }
                                 }
-                            }
-                        } header: {
-                            HStack {
-                                TextField("", text: filter.filterName)
-                                    .frame(alignment: .leading)
-                                    .font(.title)
+                            } header: {
+                                Text(filter.filterName.wrappedValue)
                                     .padding(.horizontal)
+                                    .font(.title)
                                     .background(Color(red: 235/255, green: 245/255, blue: 238/255))
                                     .cornerRadius(5)
+                                    .padding(.top)
                             }
-                            .padding(.top)
                         }
                     }
                     .padding(.horizontal)

@@ -10,13 +10,14 @@ import SwiftUI
 struct MovieDetailsView: View {
     @EnvironmentObject var movieHandler: MoviesHandler
     @Binding var movie: Movie
-    @State private var showCategories: Bool = false
 
+    @State private var isPresentingNewMoviePopover = false
     @State private var isWatched: Bool = false
     @State private var currentRating: Movie.Rating = .one
     @State private var currentCategoryName: String = ""
     @State private var currentNotes: String = ""
     @State private var isFavourite: Bool = false
+
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -53,11 +54,12 @@ struct MovieDetailsView: View {
                     HStack {
                         Text("Category: ")
                         Spacer()
-                        NavigationLink(destination: CategoriesView(movieCategory: $currentCategoryName), isActive: $showCategories) {
-                            HStack {
-                                Text(currentCategoryName)
-                                Image(systemName: "arrow.right.to.line.circle")
-                            }
+                        HStack {
+                            Text(currentCategoryName)
+                            Image(systemName: "arrow.right.to.line.circle")
+                        }
+                        .onTapGesture {
+                            isPresentingNewMoviePopover = true
                         }
                     }
                     .font(.title2)
@@ -90,32 +92,31 @@ struct MovieDetailsView: View {
                     .padding()
 
                     Rectangle()
-                        .frame(width: 100, height: 30)
+                        .frame(width: 100, height: geometry.size.height / 8)
                         .foregroundColor(.clear)
                 }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .background(Color(red: 191/255, green: 209/255, blue: 229/255))
+        .popover(isPresented: $isPresentingNewMoviePopover) {
+            CategoriesView(movieCategory: $currentCategoryName)
+        }
         .onAppear {
-            if currentCategoryName == "" {
-                currentCategoryName = movie.category
-                isWatched = movie.isWatched
-                isFavourite = movie.isFavourite
-                currentRating = movie.rating
-                currentNotes = movie.notes
-            }
-
+            currentCategoryName = movie.category
+            isWatched = movie.isWatched
+            isFavourite = movie.isFavourite
+            currentRating = movie.rating
+            currentNotes = movie.notes
         }
         .onDisappear {
-            if !showCategories {
-                movieHandler.updateMovie(movieId: movie.id,
-                                         isWatched: isWatched,
-                                         isFavourite: isFavourite,
-                                         category: currentCategoryName,
-                                         rating: currentRating,
-                                         notes: currentNotes)
-            }
+            movieHandler.updateMovie(movieId: movie.id,
+                                     isWatched: isWatched,
+                                     isFavourite: isFavourite,
+                                     category: currentCategoryName,
+                                     rating: currentRating,
+                                     notes: currentNotes)
+
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MovieCategoryViewModel.swift
+//  MovieFilterViewModel.swift
 //  Filmoteka
 //
 //  Created by Paweł Świątek on 24/11/2021.

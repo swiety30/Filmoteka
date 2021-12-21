@@ -20,8 +20,8 @@ struct MovieFilterView: View {
                 }
             }
         } label: {
-            Image(systemName: "sun.max.fill")
-                .foregroundColor(.pink)
+            Image(systemName: "arrow.up.arrow.down.square")
+//                .foregroundColor(.pink)
         }
     }
 }

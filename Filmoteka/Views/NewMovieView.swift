@@ -11,24 +11,27 @@ struct NewMovieView: View {
     @EnvironmentObject var movieHandler: MoviesHandler
     @Environment(\.presentationMode) var presentationMode
 
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+    }
+
     var body: some View {
         NavigationView {
             VStack {
-                Text("Add new movie to collection!")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
                 Form {
                     nameSection
                     yearSection
                     categorySection
                 }
+                .listStyle(GroupedListStyle())
+
                 addButton
 
             }
-            .navigationBarTitle("Back")
-            .navigationBarHidden(true)
+            .navigationBarTitle("Add new movie", displayMode: .inline)
+            .padding(.vertical)
+            .background(Color(red: 191/255, green: 209/255, blue: 229/255))
         }
-        .padding()
     }
 
     var addButton: some View {
@@ -60,13 +63,13 @@ struct NewMovieView: View {
         }
     }
 
-    @State private var movieCategory: String = "Choose.."
+    @State private var movieCategory: String = ""
     var categorySection: some View {
         NavigationLink(destination: CategoriesView(movieCategory: $movieCategory)) {
             HStack() {
                 Text("Category")
                 Spacer()
-                TextField("", text: $movieCategory)
+                TextField("Choose..", text: $movieCategory)
                     .disabled(true)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.trailing)

@@ -19,7 +19,7 @@ struct FilmotekaTabBar: View {
             TabBarIcon(viewRouter: viewRouter, assignedView: .watched, width: size.width / 3, height: size.height / 4, systemIconName: "homekit", tabName: "watched")
         }
         .frame(width: size.width, height: size.height)
-        .background(Color.gray.opacity(70).shadow(radius: 2))
+        .background(Color.gray.opacity(70))
     }
 }
 

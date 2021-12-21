@@ -35,9 +35,7 @@ private struct BannerShape: Shape {
         let leftTopEdge = CGPoint(x: rect.maxX, y: rect.minY)
         let leftBottomEdge = CGPoint(x: rect.maxX, y: rect.maxY)
         let triangleBottomEdge = CGPoint(x: rect.midX, y: rect.midY + (rect.midY / 2))
-
         let rightBottomEdge = CGPoint(x: rect.minX, y: rect.maxY)
-
         var path = Path()
 
         path.move(to: rightTopEdge)

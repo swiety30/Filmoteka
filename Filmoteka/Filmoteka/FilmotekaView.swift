@@ -15,7 +15,7 @@ struct FilmotekaView: View {
     @State private var showWatchedMovies: Bool = false
     var body: some View {
         GeometryReader { geometry in
-            VStack {
+            ZStack(alignment: .bottom) {
                 Spacer()
                 switch viewRouter.currentView {
                 case .notWatched: MoviesScrollView(viewModel: MoviesScrollViewViewModel(isWatched: false,
@@ -27,13 +27,12 @@ struct FilmotekaView: View {
                                                                                      movieFilterViewModel: movieFilterViewModel),
                                                 showTabBar: $showTabBar)
                 }
-
-
-                Spacer()
+                
                 if !showTabBar {
                     FilmotekaTabBar(viewRouter: viewRouter,
                                     size: CGSize(width: geometry.size.width,
                                                  height: geometry.size.height / 8))
+                    
                 }
             }
         }

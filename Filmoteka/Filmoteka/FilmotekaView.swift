@@ -16,7 +16,6 @@ struct FilmotekaView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .bottom) {
-                Spacer()
                 switch viewRouter.currentView {
                 case .notWatched: MoviesScrollView(viewModel: MoviesScrollViewViewModel(isWatched: false,
                                                                                         moviesHandler: movieHandler,
@@ -27,6 +26,7 @@ struct FilmotekaView: View {
                                                                                      movieFilterViewModel: movieFilterViewModel),
                                                 showTabBar: $showTabBar)
                 }
+
                 
                 if !showTabBar {
                     FilmotekaTabBar(viewRouter: viewRouter,
@@ -35,7 +35,8 @@ struct FilmotekaView: View {
                     
                 }
             }
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .edgesIgnoringSafeArea(.bottom)
+
     }
 }

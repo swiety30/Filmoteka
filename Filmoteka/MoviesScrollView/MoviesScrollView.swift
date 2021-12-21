@@ -14,15 +14,14 @@ struct MoviesScrollView: View {
     var body: some View {
         NavigationView {
             Group {
-                if $viewModel.filteredMovies.first?.filterMovies.isEmpty ?? false {
-                    VStack {
-                        Spacer()
+                if $viewModel.filteredMovies.isEmpty {
+                    GeometryReader { geometry in
                         Text("No movies to display!")
                             .font(.largeTitle)
-                        Spacer()
+                            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                     }
                 } else {
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         ForEach($viewModel.filteredMovies) { filter in
                             VStack(alignment: .leading) {
                                 Section {

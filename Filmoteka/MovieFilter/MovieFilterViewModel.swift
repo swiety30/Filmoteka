@@ -65,7 +65,9 @@ class MovieFilterViewModel: ObservableObject {
 
         case .favourite:
             let filteredMovies = movies.filter { $0.isFavourite }
-            filteredDict.append(MovieFilterModel.FilteredMovies(filterName: "Favourites", filterMovies: filteredMovies))
+            if !filteredMovies.isEmpty {
+                filteredDict.append(MovieFilterModel.FilteredMovies(filterName: "Favourites", filterMovies: filteredMovies))
+            }
         }
         return filteredDict
     }

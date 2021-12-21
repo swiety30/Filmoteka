@@ -21,7 +21,6 @@ struct MovieFilterView: View {
             }
         } label: {
             Image(systemName: "arrow.up.arrow.down.square")
-//                .foregroundColor(.pink)
         }
     }
 }

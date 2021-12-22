@@ -44,7 +44,7 @@ struct MovieDetailsView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .background(Constants.Colors.viewBackground)
+        .background(Constants.Colors.detailsBackground)
         .popover(isPresented: $isPresentingCategoriesPopover) {
             CategoriesView(movieCategory: $currentCategoryName)
         }

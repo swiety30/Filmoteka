@@ -30,7 +30,7 @@ struct NewMovieView: View {
             }
             .navigationBarTitle("Add new movie", displayMode: .inline)
             .padding(.vertical)
-            .background(Constants.Colors.viewBackground)
+            .background(Constants.Colors.detailsBackground)
         }
     }
 

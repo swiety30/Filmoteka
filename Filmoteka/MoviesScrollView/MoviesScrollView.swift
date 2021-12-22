@@ -45,7 +45,7 @@ struct MoviesScrollView: View {
                 }
             }
             .background(
-                LinearGradient(gradient: Gradient(colors: [Color(red: 84/255, green: 35/255, blue: 68/255), Color(red: 191/255, green: 209/255, blue: 229/255), Color(red: 235/255, green: 245/255, blue: 238/255)]), startPoint: .bottomLeading, endPoint: .topTrailing)
+                Constants.Colors.mainBackground
             )
 
             .navigationTitle(viewModel.title)
@@ -55,7 +55,7 @@ struct MoviesScrollView: View {
                 }
             }
         }
-        .navigationAppearance(backgroundColor: UIColor(red: 84/255, green: 35/255, blue: 68/255, alpha: 0.6),
+        .navigationAppearance(backgroundColor: Constants.Colors.navigationBackground,
                               foregroundColor: .systemBackground,
                               tintColor: .systemBackground)
     }

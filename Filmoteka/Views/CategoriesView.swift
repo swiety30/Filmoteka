@@ -41,7 +41,7 @@ struct CategoriesView: View {
             }
         }
         .edgesIgnoringSafeArea(.bottom)
-        .background(Constants.Colors.viewBackground)
+        .background(Constants.Colors.detailsBackground)
     }
 }
 

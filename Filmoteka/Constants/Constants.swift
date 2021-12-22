@@ -12,11 +12,21 @@ struct Constants {
         static let filledStarColor = Color.yellow
         static let emptyStarColor = Color.white
         static let starGlowColor = Color.orange
-        static let viewBackground = Color(red: 191/255, green: 209/255, blue: 229/255)
-
+        static let mainBackground = LinearGradient(gradient: Gradient(colors: [Color(red: 84/255, green: 35/255, blue: 68/255),
+                                                                               Color(red: 191/255, green: 209/255, blue: 229/255),
+                                                                               Color(red: 235/255, green: 245/255, blue: 238/255)]),
+                                                   startPoint: .bottomLeading,
+                                                   endPoint: .topTrailing)
+        static let detailsBackground = Color(red: 191/255, green: 209/255, blue: 229/255)
+        static let navigationBackground = UIColor(red: 84/255, green: 35/255, blue: 68/255, alpha: 0.6)
+        struct TabBar {
+            static let assignedTab = Color.black
+            static let notAssignedTab = Color.white
+            static let background = Color(red: 84/255, green: 35/255, blue: 68/255)
+        }
         struct MovieCell {
             static let fontColor = Color.black
-            static let background = (Color(red: 235/255, green: 245/255, blue: 238/255))
+            static let background = Color(red: 235/255, green: 245/255, blue: 238/255)
         }
 
         struct CategoriesView {
@@ -42,8 +52,8 @@ struct Constants {
 
 
             struct WatchedButton {
-                static let fontColor = Color.white
-                static let backgroundColor = Color.blue
+                static let fontColor = Color.black
+                static let backgroundColor = Color(red: 235/255, green: 245/255, blue: 238/255)
             }
         }
     }

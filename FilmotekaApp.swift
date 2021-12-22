@@ -12,7 +12,7 @@ struct FilmotekaApp: App {
     var movieHandler = MoviesHandler()
     var movieFilterViewModel = MovieFilterViewModel()
     var viewRouter = ViewRouter()
-    
+
     var body: some Scene {
         WindowGroup {
             FilmotekaView(viewRouter: viewRouter)

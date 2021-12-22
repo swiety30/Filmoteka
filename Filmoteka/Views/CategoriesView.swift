@@ -26,19 +26,14 @@ struct CategoriesView: View {
                             if item == movieCategory {
                                 Spacer()
                                 Image(systemName: "checkmark.seal.fill")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(Constants.Colors.CategoriesView.markedCategory)
                             }
                         }
                     }
                     .foregroundColor(.primary)
                 }
 
-//                .onDelete { index in
-//                    filmotekaModel.removeCategory(at: index)
-//                }
-
                 TextField("New Category", text: $newCategory, onCommit: {
-                    //                    filmotekaModel.addCategory(newCategory)
                     movieCategory = newCategory
                     newCategory = ""
                     presentationMode.wrappedValue.dismiss()
@@ -46,7 +41,7 @@ struct CategoriesView: View {
             }
         }
         .edgesIgnoringSafeArea(.bottom)
-        .background(Color(red: 191/255, green: 209/255, blue: 229/255))
+        .background(Constants.Colors.viewBackground)
     }
 }
 

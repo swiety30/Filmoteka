@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		733E429927739AD50065ABB2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733E429827739AD40065ABB2 /* Constants.swift */; };
+		733E429B2773C01C0065ABB2 /* GrowingButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733E429A2773C01C0065ABB2 /* GrowingButtonStyle.swift */; };
 		7366C87C27332E7400F0C81B /* FilmotekaTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7366C87B27332E7400F0C81B /* FilmotekaTabBar.swift */; };
 		7366C88527347B9E00F0C81B /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7366C88427347B9E00F0C81B /* PlusButton.swift */; };
 		7366C88927347CFF00F0C81B /* FilmotekaTabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7366C88827347CFF00F0C81B /* FilmotekaTabBarRouter.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		733E429827739AD40065ABB2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		733E429A2773C01C0065ABB2 /* GrowingButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingButtonStyle.swift; sourceTree = "<group>"; };
 		7366C87B27332E7400F0C81B /* FilmotekaTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaTabBar.swift; sourceTree = "<group>"; };
 		7366C88427347B9E00F0C81B /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		7366C88827347CFF00F0C81B /* FilmotekaTabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaTabBarRouter.swift; sourceTree = "<group>"; };
@@ -78,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		733E429C2773C33C0065ABB2 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				733E429827739AD40065ABB2 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		7366C87D27332E7800F0C81B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				73E2595D274ECFE80017272B /* Filmoteka */,
+				733E429C2773C33C0065ABB2 /* Constants */,
 				C6D7BA1027552D5C00C26008 /* Movies */,
 				C6D7BA0E27552D3200C26008 /* MoviesScrollView */,
 				73E25962274ED9A70017272B /* Helpers */,
@@ -138,7 +151,6 @@
 				73CD71CC272D692800A8B593 /* StarsView.swift */,
 				7366C88427347B9E00F0C81B /* PlusButton.swift */,
 				7381D9D427709FCD001C12D4 /* FavouriteButton.swift */,
-				73D4CBDD2720BBA8001BBE2A /* StarShape.swift */,
 				7381D9D62771EDAE001C12D4 /* Banner.swift */,
 			);
 			path = Views;
@@ -170,6 +182,8 @@
 				73E2596C27624FC30017272B /* ExpandableTextEditorWithPlaceholder.swift */,
 				7381D9D0276BD91D001C12D4 /* DividerWithText.swift */,
 				7381D9D2276BE0AF001C12D4 /* RoundedCorner.swift */,
+				73D4CBDD2720BBA8001BBE2A /* StarShape.swift */,
+				733E429A2773C01C0065ABB2 /* GrowingButtonStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -267,8 +281,10 @@
 				7381D9D3276BE0AF001C12D4 /* RoundedCorner.swift in Sources */,
 				73E25964274ED9C70017272B /* UtilityExtensions.swift in Sources */,
 				73E2596A276228D50017272B /* NavAppearanceModifier.swift in Sources */,
+				733E429B2773C01C0065ABB2 /* GrowingButtonStyle.swift in Sources */,
 				73E25961274ED4C90017272B /* MovieFilterView.swift in Sources */,
 				73E2595F274ED0040017272B /* MovieFilterViewModel.swift in Sources */,
+				733E429927739AD50065ABB2 /* Constants.swift in Sources */,
 				C6D7BA1227552D8F00C26008 /* MoviesScrollView.swift in Sources */,
 				73CD71C9272D603A00A8B593 /* CategoriesView.swift in Sources */,
 				7381D9D527709FCD001C12D4 /* FavouriteButton.swift in Sources */,

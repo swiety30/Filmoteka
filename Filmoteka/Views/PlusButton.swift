@@ -7,32 +7,52 @@
 
 import SwiftUI
 
-struct PlusButton: View {
+/// Plus button which  present modally content View on tap gesture
+struct PlusButton<Content: View>: View {
     let width, height: CGFloat
     @State private var isPresentingNewMoviePopover = false
+    @Environment(\.isEnabled) var isEnabled
+    let content: Content
 
     var body: some View {
         ZStack {
-            Circle()
-                .stroke(lineWidth: 3.0).foregroundColor(.white)
-                .frame(width: width/7, height: width/7)
-                .shadow(color: .orange, radius: 4)
-            Circle()
-                .foregroundColor(.orange)
-                .opacity(80)
-                .frame(width: width/7, height: width/7)
-            Image(systemName: "plus")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: width/14, height: width/14)
-                .foregroundColor(.white)
+            behindButtonView
+            imageView
         }
-
         .onTapGesture {
             isPresentingNewMoviePopover = true
         }
         .popover(isPresented: $isPresentingNewMoviePopover) {
-            NewMovieView()
+            content
         }
+    }
+
+    var behindButtonView: some View {
+        ZStack {
+            Circle()
+                .stroke(lineWidth: Constants.Sizes.PlusButton.stroke)
+                .foregroundColor(Constants.Colors.PlusButton.strokeColor)
+                .frame(width: width, height: width)
+                .shadow(color: Constants.Colors.PlusButton.shadowColor, radius: Constants.Sizes.glowSize)
+            if isEnabled {
+                Circle()
+                    .foregroundColor(Constants.Colors.PlusButton.enabledBackgroundColor)
+                    .opacity(Constants.Sizes.PlusButton.opacity)
+                    .frame(width: width, height: width)
+            } else {
+                Circle()
+                    .foregroundColor(Constants.Colors.PlusButton.disabledBackgroundColor)
+                    .opacity(Constants.Sizes.PlusButton.opacity)
+                    .frame(width: width, height: width)
+            }
+        }
+    }
+
+    var imageView: some View {
+        Image(systemName: "plus")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: width/2, height: width/2)
+            .foregroundColor(Constants.Colors.PlusButton.imageColor)
     }
 }

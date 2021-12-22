@@ -1,5 +1,5 @@
 //
-//  PlusButton.swift
+//  FavouriteButton.swift
 //  Filmoteka
 //
 //  Created by Paweł Świątek on 20/12/2021.
@@ -9,28 +9,37 @@ import SwiftUI
 
 struct FavouriteButton: View {
     @Binding var isFavourite: Bool
-    var onGestureTap: (Bool) -> ()
+    var onGestureTap: () -> ()
+    var starSize: CGFloat = Constants.Sizes.favouriteStarSize
     
-    var starSize: CGFloat = 30
     var body: some View {
         ZStack {
-            Circle()
-                .stroke(lineWidth: 2.0).foregroundColor(.yellow)
-                .frame(width: starSize, height: starSize)
-                .shadow(color: .orange, radius: 4)
-            if isFavourite {
-                RoundedStar()
-                    .frame(width: starSize, height: starSize)
-                    .foregroundColor(.yellow)
-                
-            } else {
-                RoundedStar()
-                    .frame(width: starSize, height: starSize)
-                    .foregroundColor(.white)
-            }
+            circleView
+            starView
         }
         .onTapGesture {
-            onGestureTap(isFavourite)
+            onGestureTap()
         }
     }
+
+    var circleView: some View {
+        Circle()
+            .stroke(lineWidth: Constants.Sizes.starStroke).foregroundColor(Constants.Colors.filledStarColor)
+            .frame(width: starSize, height: starSize)
+            .shadow(color: Constants.Colors.starGlowColor, radius: Constants.Sizes.glowSize)
+    }
+
+    var starView: some View {
+        if isFavourite {
+            return RoundedStar()
+                .frame(width: starSize, height: starSize)
+                .foregroundColor(Constants.Colors.filledStarColor)
+
+        } else {
+            return RoundedStar()
+                .frame(width: starSize, height: starSize)
+                .foregroundColor(Constants.Colors.emptyStarColor)
+        }
+    }
+
 }

@@ -11,36 +11,58 @@ struct MovieCell: View {
     @Binding var movie: Movie
     var body: some View {
         HStack {
-            ZStack(alignment: .topLeading) {
-                Image("tombraider")
-                    .resizable()
-                    .frame(height: 200)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .shadow(radius: 10)
-
-                if movie.isFavourite {
-                    Banner(width: 30, height: 70,
-                           content: RoundedStar()
-                            .foregroundColor(.yellow))
-                        .padding(.horizontal)
-                }
-            }
+            ImageSection(isFavourite: $movie.isFavourite)
             Spacer()
-            VStack(alignment: .trailing) {
-                Text(movie.name)
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.trailing)
-                    .foregroundColor(.black)
-                Text(movie.year)
-                    .font(.caption)
-                    .foregroundColor(.black)
-                HStack {
-                    StarsView(currentRating: $movie.rating)
-                        .disabled(true)
-                }
-            }.padding(.horizontal)
+            CellDetails(movieName: movie.name,
+                        movieYear: movie.year,
+                        movieRating: $movie.rating)
         }
-        .background(Color(red: 235/255, green: 245/255, blue: 238/255))
-        .cornerRadius(20)
+        .background(Constants.Colors.MovieCell.background)
+        .cornerRadius(Constants.Sizes.MovieCell.corners)
     }
 }
+
+fileprivate struct CellDetails: View {
+    var movieName, movieYear: String
+    @Binding var movieRating: Movie.Rating
+
+    var body: some View {
+        VStack(alignment: .trailing) {
+            Text(movieName)
+                .font(.largeTitle)
+                .multilineTextAlignment(.trailing)
+                .foregroundColor(Constants.Colors.MovieCell.fontColor)
+            Text(movieYear)
+                .font(.caption)
+                .foregroundColor(Constants.Colors.MovieCell.fontColor)
+            HStack {
+                StarsView(currentRating: $movieRating)
+                    .disabled(true)
+            }
+        }.padding(.horizontal)
+    }
+}
+
+fileprivate struct ImageSection: View {
+    @Binding var isFavourite: Bool
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            Image("tombraider")
+                .resizable()
+                .frame(height: Constants.Sizes.MovieCell.imageHeight)
+                .aspectRatio(2/3,
+                             contentMode: .fit)
+                .shadow(radius: Constants.Sizes.MovieCell.imageShadow)
+            
+            if isFavourite {
+                Banner(width: Constants.Sizes.MovieCell.bannerWidth,
+                       height: Constants.Sizes.MovieCell.bannerHeight,
+                       content: RoundedStar()
+                        .foregroundColor(.yellow))
+                    .padding(.horizontal)
+            }
+        }
+    }
+}
+
+

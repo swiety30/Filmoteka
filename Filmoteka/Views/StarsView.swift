@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StarsView: View {
     @Binding var currentRating: Movie.Rating
-    var starSize: CGFloat = 20
+    var starSize: CGFloat = Constants.Sizes.defaultStarSize
     var onGestureTap: ((Movie.Rating) -> ())?
 
     var body: some View {
@@ -28,22 +28,22 @@ struct StarsView: View {
             }
         }
     }
-
+    
     var filledStar: some View {
         RoundedStar()
             .frame(width: starSize, height: starSize)
-            .foregroundColor(.yellow)
+            .foregroundColor(Constants.Colors.filledStarColor)
     }
 
     var emptyStar: some View {
         ZStack {
-            RoundedStar(cornerRadius: 0)
-                .stroke(lineWidth: 2.0)
-                .foregroundColor(.yellow)
+            RoundedStar()
+                .stroke(lineWidth: Constants.Sizes.starStroke)
+                .foregroundColor(Constants.Colors.filledStarColor)
                 .frame(width: starSize, height: starSize)
 
-            RoundedStar(cornerRadius: 0)
-                .foregroundColor(.white)
+            RoundedStar()
+                .foregroundColor(Constants.Colors.emptyStarColor)
                 .frame(width: starSize, height: starSize)
         }
     }

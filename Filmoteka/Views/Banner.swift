@@ -1,5 +1,5 @@
 //
-//  PlusButton.swift
+//  Banner.swift
 //  Filmoteka
 //
 //  Created by Paweł Świątek on 04/11/2021.
@@ -10,22 +10,29 @@ import SwiftUI
 struct Banner<Content: View>: View {
     let width, height: CGFloat
     let content: Content
-    private let gold =  Color(red: 218 / 255, green: 165 / 255, blue: 32/255)
+    
     var body: some View {
         ZStack(alignment: .center) {
-            Group {
-                BannerShape()
-                    .stroke(lineWidth: 4)
-                    .foregroundColor(gold)
-                BannerShape()
-
-                    .foregroundColor(.red)
-            }
-            .frame(width: width, height: height)
-
-            content
-                .frame(width: width - 4, height: width - 4)
+            bannerView
+            contentView
         }
+    }
+
+    var bannerView: some View {
+        Group {
+            BannerShape()
+                .stroke(lineWidth: Constants.Sizes.Banner.padding)
+                .foregroundColor(Constants.Colors.Banner.frameColor)
+            BannerShape()
+
+                .foregroundColor(Constants.Colors.Banner.backgroundColor)
+        }
+        .frame(width: width, height: height)
+    }
+
+    var contentView: some View {
+        content
+            .frame(width: width - Constants.Sizes.Banner.padding, height: width - Constants.Sizes.Banner.padding)
     }
 }
 

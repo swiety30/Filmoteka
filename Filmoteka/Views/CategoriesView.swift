@@ -10,38 +10,49 @@ import SwiftUI
 struct CategoriesView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var movieCategory: String
-    @EnvironmentObject var filmotekaModel: FilmotekaViewModel
+    @EnvironmentObject var movieHandler: MoviesHandler
     @State private var newCategory: String = ""
 
     var body: some View {
-        VStack {
-            List {
-                ForEach(filmotekaModel.categories) { item in
-                    HStack {
-                        Text(item.name)
-                        if item.name == movieCategory {
-                            Spacer()
-                            Rectangle()
-                                .foregroundColor(.green)
-                                .frame(width: 20, height: 20)
+        List {
+            Section(header: CategoryHeader(), footer: CategoryFooter()) {
+                ForEach(movieHandler.allCategories, id: \.self) { item in
+                    Button {
+                        movieCategory = item
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        HStack {
+                            Text(item)
+                            if item == movieCategory {
+                                Spacer()
+                                Image(systemName: "checkmark.seal.fill")
+                                    .foregroundColor(Constants.Colors.CategoriesView.markedCategory)
+                            }
                         }
                     }
-                    .onTapGesture {
-                        movieCategory = item.name
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
-                .onDelete { index in
-                    filmotekaModel.removeCategory(at: index)
+                    .foregroundColor(.primary)
                 }
 
                 TextField("New Category", text: $newCategory, onCommit: {
-                    filmotekaModel.addCategory(newCategory)
                     movieCategory = newCategory
                     newCategory = ""
                     presentationMode.wrappedValue.dismiss()
                 })
             }
         }
+        .edgesIgnoringSafeArea(.bottom)
+        .background(Constants.Colors.detailsBackground)
+    }
+}
+
+struct CategoryHeader: View {
+    var body: some View {
+        Text("Categories List")
+    }
+}
+
+struct CategoryFooter: View {
+    var body: some View {
+        Text("Please pick category for your movie")
     }
 }

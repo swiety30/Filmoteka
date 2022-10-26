@@ -8,63 +8,182 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
-    @EnvironmentObject var filmotekaModel: FilmotekaViewModel
-    @Binding var movie: FilmotekaModel.Movie
-    @State private var showCategories: Bool = false
-
+    @EnvironmentObject var movieHandler: MoviesHandler
+    @Binding var movie: Movie
+    @State private var isPresentingCategoriesPopover = false
     @State private var isWatched: Bool = false
-    @State private var currentRating: FilmotekaModel.Movie.Rating = .one
+    @State private var currentRating: Movie.Rating = .one
     @State private var currentCategoryName: String = ""
+    @State private var currentNotes: String = ""
+    @State private var isFavourite: Bool = false
 
     var body: some View {
         VStack {
-            ScrollView {
-                Image("tombraider")
-                    .resizable()
-                    .frame(width: 150)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .cornerRadius(20)
-                    .shadow(radius: 10)
-                Text(movie.name)
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
-                NavigationLink(destination: CategoriesView(movieCategory: $currentCategoryName), isActive: $showCategories) {
-                    Text(currentCategoryName)
-                        .font(.caption)
-                }
-                Text(movie.year)
-                    .font(.caption)
-                StarsView(currentRating: $currentRating) { rating in
-                    currentRating = rating
-                }
-                WatchedButton(isWatched: $isWatched) { watched in
-                    isWatched = !isWatched
+            GeometryReader { geometry in
+                ScrollView(showsIndicators: false) {
+                    ImageSection(width: geometry.size.width,
+                                 movieName: movie.name,
+                                 movieYear: movie.year,
+                                 imageURL: movie.detailsImageURL,
+                                 isFavourite: $isFavourite)
+
+                    CategorySection(isPresentingCategoriesPopover: $isPresentingCategoriesPopover,
+                                    currentCategoryName: currentCategoryName)
+
+                    MyRatingSection(currentRating: $currentRating)
+
+                    MyNotesSection(currentNotes: $currentNotes,
+                                   width: geometry.size.width)
+
+                    DescriptionSection(movieDescription: movie.description)
+
+                    WatchedButton(isWatched: $isWatched)
+
+                    BottomSpacing(height: geometry.size.height / 8)
                 }
             }
         }
-        
+        .navigationBarTitleDisplayMode(.inline)
+        .background(Constants.Colors.detailsBackground)
+        .popover(isPresented: $isPresentingCategoriesPopover) {
+            CategoriesView(movieCategory: $currentCategoryName)
+        }
         .onAppear {
-            if currentCategoryName == "" {
-                currentCategoryName = movie.category.name
-                isWatched = movie.isWatched
-                currentRating = movie.rating
-            }
-
+            currentCategoryName = movie.category
+            isWatched = movie.isWatched
+            isFavourite = movie.isFavourite
+            currentRating = movie.rating
+            currentNotes = movie.notes
         }
         .onDisappear {
-            if !showCategories {
-                filmotekaModel.updateMovie(movieId: movie.id, isWatched: isWatched, category: filmotekaModel.category(named: currentCategoryName), rating: currentRating)
-            }
+            movieHandler.updateMovie(movieId: movie.id,
+                                     isWatched: isWatched,
+                                     isFavourite: isFavourite,
+                                     category: currentCategoryName,
+                                     rating: currentRating,
+                                     notes: currentNotes)
         }
     }
 }
 
-struct WatchedButton: View {
+fileprivate struct ImageSection: View {
+    var width: CGFloat
+    let movieName, movieYear, imageURL: String
+    @Binding var isFavourite: Bool
+
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            ZStack(alignment: .bottomTrailing) {
+                if let url = URL(string: imageURL) {
+                    AsyncImage(url: url)
+                        .frame(width: width, height: width / 2)
+                        .scaledToFit()
+                } else {
+                    Image("tombraider2")
+                        .resizable()
+                        .frame(width: width, height: width / 2)
+                        .scaledToFit()
+                }
+
+                ZStack(alignment: .bottomTrailing) {
+                    Color.black
+                        .opacity(Constants.Sizes.MovieDetails.ImageSection.backgroundOpacity)
+                    VStack(alignment: .trailing) {
+                        Text(movieName)
+                            .font(.bold(.largeTitle)())
+                        Text(movieYear)
+                            .font(.bold(.caption)())
+                    }
+                    .foregroundColor(.white)
+                    .padding()
+                }
+                .frame(width: width, height: width / 2 / 3)
+            }
+            .cornerRadius(Constants.Sizes.MovieDetails.ImageSection.corners,
+                          corners: [.bottomLeft, .bottomRight])
+            .shadow(radius: Constants.Sizes.MovieDetails.ImageSection.shadow)
+            
+            FavouriteButton(isFavourite: $isFavourite)  {
+                isFavourite = !isFavourite
+            }
+            .padding()
+        }
+    }
+}
+
+fileprivate struct CategorySection: View {
+    @Binding var isPresentingCategoriesPopover: Bool
+    var currentCategoryName: String
+
+    var body: some View {
+        HStack {
+            Text("Category: ")
+            Spacer()
+            HStack {
+                Text(currentCategoryName)
+                Image(systemName: "arrow.right.to.line.circle")
+            }
+            .onTapGesture {
+                isPresentingCategoriesPopover = true
+            }
+        }
+        .font(.title2)
+        .foregroundColor(Constants.Colors.MovieDetails.fontColor)
+        .padding()
+    }
+}
+
+fileprivate struct MyRatingSection: View {
+    @Binding var currentRating: Movie.Rating
+
+    var body: some View {
+        DividerWithText(text: "My Rating",
+                        lineColor: Constants.Colors.MovieDetails.dividerLineColor,
+                        textColor: Constants.Colors.MovieDetails.dividerTextColor)
+
+        StarsView(currentRating: $currentRating, starSize: Constants.Sizes.detailsStarSize) { rating in
+            currentRating = rating
+        }
+        .padding()
+    }
+}
+
+fileprivate struct MyNotesSection: View {
+    @Binding var currentNotes: String
+    var width: CGFloat
+
+    var body: some View {
+        DividerWithText(text: "My Notes",
+                        lineColor: Constants.Colors.MovieDetails.dividerLineColor,
+                        textColor: Constants.Colors.MovieDetails.dividerTextColor)
+
+        ExpandableTextEditorWithPlaceholder(placeholderText: "Please add notes...",
+                                            width: width - 50,
+                                            bindingText: $currentNotes)
+            .cornerRadius(Constants.Sizes.MovieDetails.NotesSection.corners)
+            .padding()
+    }
+}
+
+fileprivate struct DescriptionSection: View {
+    var movieDescription: String
+
+    var body: some View {
+        Divider()
+            .foregroundColor(Constants.Colors.MovieDetails.dividerLineColor)
+            .padding()
+
+        Text(movieDescription)
+            .padding(.horizontal)
+    }
+}
+
+fileprivate struct WatchedButton: View {
     @Binding var isWatched: Bool
-    var onGestureTap: (Bool) -> ()
+
     var body: some View {
         Button {
-            onGestureTap(isWatched)
+            isWatched = !isWatched
         } label: {
             if isWatched {
                 Text("Mark as not watched")
@@ -72,7 +191,18 @@ struct WatchedButton: View {
                 Text("Mark as watched")
             }
         }
+        .buttonStyle(GrowingButton(backgroundColor: Constants.Colors.MovieDetails.WatchedButton.backgroundColor,
+                                   foregroundColor: Constants.Colors.MovieDetails.WatchedButton.fontColor))
+        .padding()
     }
+}
 
+fileprivate  struct BottomSpacing: View {
+    var height: CGFloat
+    var body: some View {
+        Rectangle()
+            .frame(width: 100, height: height)
+            .foregroundColor(.clear)
+    }
 }
 

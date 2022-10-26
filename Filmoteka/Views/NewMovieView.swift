@@ -8,37 +8,34 @@
 import SwiftUI
 
 struct NewMovieView: View {
-    @EnvironmentObject var filmotekaModel: FilmotekaViewModel
+    @EnvironmentObject var movieHandler: MoviesHandler
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
             VStack {
-                Text("Add new movie to collection!")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
                 Form {
                     nameSection
                     yearSection
                     categorySection
                 }
+                .listStyle(GroupedListStyle())
+
                 addButton
 
             }
-            .navigationBarTitle("Back")
-            .navigationBarHidden(true)
+            .navigationBarTitle("Add new movie", displayMode: .inline)
+            .padding(.vertical)
+            .background(Constants.Colors.detailsBackground)
         }
-        .padding()
     }
 
     var addButton: some View {
         Button {
-            filmotekaModel.addMovie(movieName, category: filmotekaModel.category(named: movieCategory))
+            movieHandler.addMovie(movieName, category: movieCategory)
             presentationMode.wrappedValue.dismiss()
-        } label: {
-            Text("Add")
-        }
-        .disabled(movieName == "" || movieYear == "" || movieCategory == "")
+        } label: { Text("Add") }
+        .disabled(movieName == "" || movieCategory == "" || !movieYear.isNumeric() || movieCategory == "")
     }
     
     @State private var movieName: String = ""
@@ -55,18 +52,19 @@ struct NewMovieView: View {
         Section {
             TextField("", text: $movieYear)
                 .keyboardType(.decimalPad)
-        } header: {
-            Text("Year")
-        }
+                .onSubmit {
+                    if !movieYear.isNumeric() { movieYear = "" }
+                }
+        } header: { Text("Year") }
     }
 
-    @State private var movieCategory: String = "Choose.."
+    @State private var movieCategory: String = ""
     var categorySection: some View {
         NavigationLink(destination: CategoriesView(movieCategory: $movieCategory)) {
             HStack() {
                 Text("Category")
                 Spacer()
-                TextField("", text: $movieCategory)
+                TextField("Choose..", text: $movieCategory)
                     .disabled(true)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.trailing)

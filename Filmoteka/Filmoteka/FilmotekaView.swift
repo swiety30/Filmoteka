@@ -8,80 +8,33 @@
 import SwiftUI
 
 struct FilmotekaView: View {
-    @EnvironmentObject var filmotekaViewModel: FilmotekaViewModel
     @StateObject var viewRouter: ViewRouter
+    @EnvironmentObject var movieHandler: MoviesHandler
+    @EnvironmentObject var movieFilterViewModel: MovieFilterViewModel
     @State private var showTabBar: Bool = false
-
+    @State private var showWatchedMovies: Bool = false
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                Spacer()
+            ZStack(alignment: .bottom) {
                 switch viewRouter.currentView {
-                case .notWatched:
-                    scrollViewWithNotWatchedMovies
-                case .watched:
-                    scrollViewWithWatchedMovies
+                case .notWatched: MoviesScrollView(viewModel: MoviesScrollViewViewModel(isWatched: false,
+                                                                                        moviesHandler: movieHandler,
+                                                                                        movieFilterViewModel: movieFilterViewModel),
+                                                   showTabBar: $showTabBar)
+                case .watched: MoviesScrollView(viewModel: MoviesScrollViewViewModel(isWatched: true,
+                                                                                     moviesHandler: movieHandler,
+                                                                                     movieFilterViewModel: movieFilterViewModel),
+                                                showTabBar: $showTabBar)
                 }
-                Spacer()
+
                 if !showTabBar {
-                    FilmotekaTabBar(viewRouter: viewRouter, size: CGSize(width: geometry.size.width, height: geometry.size.height / 8))
+                    FilmotekaTabBar(viewRouter: viewRouter,
+                                    size: CGSize(width: geometry.size.width,
+                                                 height: geometry.size.height / 8))
+                    
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
         }
-    }
-    
-    var scrollViewWithNotWatchedMovies: some View  {
-        ScrollViewWithNavigation(filteredMovies: $filmotekaViewModel.toBeWatchedMovies, showTabBar: $showTabBar, title: "To Watch")
-    }
-    
-    var scrollViewWithWatchedMovies: some View {
-        ScrollViewWithNavigation(filteredMovies: $filmotekaViewModel.watchedMovies, showTabBar: $showTabBar, title: "Watched")
-    }
-}
-
-struct ScrollViewWithNavigation: View {
-    @Binding var filteredMovies: [MovieFilterModel.FilteredMovies]
-    @EnvironmentObject var filmotekaModel: FilmotekaViewModel
-    @Binding var showTabBar: Bool
-
-    let title: String
-
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                ForEach($filteredMovies) { filter in
-                    Section {
-                        ForEach(filter.filterMovies) { movie in
-                            NavigationLink(destination: MovieDetailsView(movie: movie), isActive: $showTabBar) {
-                                MovieCell(movie: movie)
-                            }
-                        }
-                    } header: {
-                        HStack {
-                            TextField("", text: filter.filterName)
-                                .frame(alignment: .leading)
-                            Spacer()
-                        }
-                        .padding()
-                    }
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(title)
-                        .font(.headline)
-                }
-                ToolbarItem() {
-                    MovieFilterView(filterViewModel: filmotekaModel.filterViewModel)
-                }
-            }
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilmotekaView(viewRouter: ViewRouter())
     }
 }

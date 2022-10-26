@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct FilmotekaTabBar: View {
-    @StateObject var viewRouter: ViewRouter
+    @ObservedObject var viewRouter: ViewRouter
     let size: CGSize
 
     var body: some View {
         HStack {
-            TabBarIcon(viewRouter: viewRouter, assignedView: .notWatched, width: size.width / 3, height: size.height / 4, systemIconName: "homekit", tabName: "to watch")
-            plusButton(width: size.width, height: size.height)
+            TabBarIcon(viewRouter: viewRouter,
+                       assignedView: .notWatched,
+                       width: size.width / 3,
+                       height: size.height / 4,
+                       systemIconName: "homekit",
+                       tabName: "to watch")
+            PlusButton(width: size.width / 7,
+                       height: size.height / 7,
+                       content: NewMovieView())
                 .offset(y: -size.height / 2)
-            TabBarIcon(viewRouter: viewRouter, assignedView: .watched, width: size.width / 3, height: size.height / 4, systemIconName: "homekit", tabName: "watched")
+            TabBarIcon(viewRouter: viewRouter,
+                       assignedView: .watched,
+                       width: size.width / 3,
+                       height: size.height / 4,
+                       systemIconName: "homekit",
+                       tabName: "watched")
         }
         .frame(width: size.width, height: size.height)
-        .background(Color.gray.opacity(70).shadow(radius: 2))
+        .background(Constants.Colors.TabBar.background)
     }
 }
 
 struct TabBarIcon: View {
-    @StateObject var viewRouter: ViewRouter
+    @ObservedObject var viewRouter: ViewRouter
     let assignedView: ViewToDisplay
     let width, height: CGFloat
     let systemIconName, tabName: String
@@ -43,6 +55,6 @@ struct TabBarIcon: View {
         .onTapGesture {
             viewRouter.currentView = assignedView
         }
-        .foregroundColor(viewRouter.currentView == assignedView ? .black : .white)
+        .foregroundColor(viewRouter.currentView == assignedView ? Constants.Colors.TabBar.assignedTab : Constants.Colors.TabBar.notAssignedTab)
     }
 }

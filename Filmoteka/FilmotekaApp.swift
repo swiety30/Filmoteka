@@ -9,13 +9,15 @@ import SwiftUI
 
 @main
 struct FilmotekaApp: App {
-    @StateObject var viewRouter = ViewRouter()
-    @StateObject var filmotekaViewModel = FilmotekaViewModel()
+    var movieHandler = MoviesHandler()
+    var movieFilterViewModel = MovieFilterViewModel()
+    var viewRouter = ViewRouter()
 
     var body: some Scene {
         WindowGroup {
             FilmotekaView(viewRouter: viewRouter)
-                .environmentObject(filmotekaViewModel)
+                .environmentObject(movieHandler)
+                .environmentObject(movieFilterViewModel)
         }
     }
 }

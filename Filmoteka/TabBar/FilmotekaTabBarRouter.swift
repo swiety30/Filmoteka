@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ViewToDisplay {
+enum ViewToDisplay: Equatable {
      case notWatched
      case watched
  }

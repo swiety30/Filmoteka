@@ -8,31 +8,64 @@
 import SwiftUI
 
 struct MovieCell: View {
-    @Binding var movie: FilmotekaModel.Movie
-
+    @Binding var movie: Movie
     var body: some View {
         HStack {
-            Image("tombraider")
-                .resizable()
-                .frame(width: 150)
-                .aspectRatio(2/3, contentMode: .fit)
-                .cornerRadius(20)
-                .shadow(radius: 10)
+            ImageSection(isFavourite: $movie.isFavourite,
+                         imageStringURL: movie.logoImageURL)
             Spacer()
-            VStack(alignment: .trailing) {
-                Text(movie.name)
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.black)
-                Text(movie.year)
-                    .font(.caption)
-                    .foregroundColor(.black)
-                HStack {
-                    StarsView(currentRating: $movie.rating)
-                        .disabled(true)
-                }
-            }.padding(.vertical)
+            CellDetails(movieName: movie.name,
+                        movieYear: movie.year,
+                        movieImageURL: movie.logoImageURL,
+                        movieRating: $movie.rating)
         }
-        .padding()
+        .background(Constants.Colors.MovieCell.background)
+        .cornerRadius(Constants.Sizes.MovieCell.corners)
+    }
+}
+
+fileprivate struct CellDetails: View {
+    var movieName, movieYear, movieImageURL: String
+    @Binding var movieRating: Movie.Rating
+
+    var body: some View {
+        VStack(alignment: .trailing) {
+            Text(movieName)
+                .font(.largeTitle)
+                .multilineTextAlignment(.trailing)
+                .foregroundColor(Constants.Colors.MovieCell.fontColor)
+            Text(movieYear)
+                .font(.caption)
+                .foregroundColor(Constants.Colors.MovieCell.fontColor)
+            HStack {
+                StarsView(currentRating: $movieRating)
+                    .disabled(true)
+            }
+        }.padding(.horizontal)
+    }
+}
+
+fileprivate struct ImageSection: View {
+    @Binding var isFavourite: Bool
+    let imageStringURL: String
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            if let url = URL(string: imageStringURL) {
+                AsyncImage(url: url)
+                    .frame(height: Constants.Sizes.MovieCell.imageHeight)
+                    .shadow(radius: Constants.Sizes.MovieCell.imageShadow)
+            } else {
+                Image("tombraider")
+                    .frame(height: Constants.Sizes.MovieCell.imageHeight)
+                    .shadow(radius: Constants.Sizes.MovieCell.imageShadow)
+            }
+            if isFavourite {
+                Banner(width: Constants.Sizes.MovieCell.bannerWidth,
+                       height: Constants.Sizes.MovieCell.bannerHeight,
+                       content: RoundedStar()
+                        .foregroundColor(.yellow))
+                    .padding(.horizontal)
+            }
+        }
     }
 }

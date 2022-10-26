@@ -29,7 +29,6 @@ class MoviesScrollViewViewModel: ObservableObject {
     }
 }
 
-
 fileprivate extension Array where Element == Movie  {
     func applyFiler(movieFilterViewModel: MovieFilterViewModel, moviesHandler: MoviesHandler, isWatched: Bool) -> [MovieFilterModel.FilteredMovies] {
         movieFilterViewModel.filtered(self.filter { $0.isWatched == isWatched }, moviesHandler.allCategories)

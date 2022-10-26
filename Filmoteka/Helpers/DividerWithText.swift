@@ -12,7 +12,6 @@ struct DividerWithText: View {
     var lineColor: Color
     var textColor: Color
 
-
     var body: some View {
         HStack {
             line

@@ -10,7 +10,6 @@ import SwiftUI
 struct MovieDetailsView: View {
     @EnvironmentObject var movieHandler: MoviesHandler
     @Binding var movie: Movie
-
     @State private var isPresentingCategoriesPopover = false
     @State private var isWatched: Bool = false
     @State private var currentRating: Movie.Rating = .one
@@ -25,6 +24,7 @@ struct MovieDetailsView: View {
                     ImageSection(width: geometry.size.width,
                                  movieName: movie.name,
                                  movieYear: movie.year,
+                                 imageURL: movie.detailsImageURL,
                                  isFavourite: $isFavourite)
 
                     CategorySection(isPresentingCategoriesPopover: $isPresentingCategoriesPopover,
@@ -62,23 +62,28 @@ struct MovieDetailsView: View {
                                      category: currentCategoryName,
                                      rating: currentRating,
                                      notes: currentNotes)
-
         }
     }
 }
 
 fileprivate struct ImageSection: View {
     var width: CGFloat
-    var movieName, movieYear: String
+    let movieName, movieYear, imageURL: String
     @Binding var isFavourite: Bool
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
             ZStack(alignment: .bottomTrailing) {
-                Image("tombraider2")
-                    .resizable()
-                    .frame(width: width, height: width / 2)
-                    .scaledToFit()
+                if let url = URL(string: imageURL) {
+                    AsyncImage(url: url)
+                        .frame(width: width, height: width / 2)
+                        .scaledToFit()
+                } else {
+                    Image("tombraider2")
+                        .resizable()
+                        .frame(width: width, height: width / 2)
+                        .scaledToFit()
+                }
 
                 ZStack(alignment: .bottomTrailing) {
                     Color.black

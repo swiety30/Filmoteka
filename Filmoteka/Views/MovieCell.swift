@@ -11,10 +11,12 @@ struct MovieCell: View {
     @Binding var movie: Movie
     var body: some View {
         HStack {
-            ImageSection(isFavourite: $movie.isFavourite)
+            ImageSection(isFavourite: $movie.isFavourite,
+                         imageStringURL: movie.logoImageURL)
             Spacer()
             CellDetails(movieName: movie.name,
                         movieYear: movie.year,
+                        movieImageURL: movie.logoImageURL,
                         movieRating: $movie.rating)
         }
         .background(Constants.Colors.MovieCell.background)
@@ -23,7 +25,7 @@ struct MovieCell: View {
 }
 
 fileprivate struct CellDetails: View {
-    var movieName, movieYear: String
+    var movieName, movieYear, movieImageURL: String
     @Binding var movieRating: Movie.Rating
 
     var body: some View {
@@ -45,15 +47,18 @@ fileprivate struct CellDetails: View {
 
 fileprivate struct ImageSection: View {
     @Binding var isFavourite: Bool
+    let imageStringURL: String
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Image("tombraider")
-                .resizable()
-                .frame(height: Constants.Sizes.MovieCell.imageHeight)
-                .aspectRatio(2/3,
-                             contentMode: .fit)
-                .shadow(radius: Constants.Sizes.MovieCell.imageShadow)
-            
+            if let url = URL(string: imageStringURL) {
+                AsyncImage(url: url)
+                    .frame(height: Constants.Sizes.MovieCell.imageHeight)
+                    .shadow(radius: Constants.Sizes.MovieCell.imageShadow)
+            } else {
+                Image("tombraider")
+                    .frame(height: Constants.Sizes.MovieCell.imageHeight)
+                    .shadow(radius: Constants.Sizes.MovieCell.imageShadow)
+            }
             if isFavourite {
                 Banner(width: Constants.Sizes.MovieCell.bannerWidth,
                        height: Constants.Sizes.MovieCell.bannerHeight,
@@ -64,5 +69,3 @@ fileprivate struct ImageSection: View {
         }
     }
 }
-
-

@@ -53,5 +53,3 @@ struct ExpandableTextEditorWithPlaceholder: View {
         text == placeholderText
     }
 }
-
-

@@ -41,5 +41,4 @@ struct FavouriteButton: View {
                 .foregroundColor(Constants.Colors.emptyStarColor)
         }
     }
-
 }

@@ -11,10 +11,6 @@ struct NewMovieView: View {
     @EnvironmentObject var movieHandler: MoviesHandler
     @Environment(\.presentationMode) var presentationMode
 
-    init() {
-        UITableView.appearance().backgroundColor = .clear
-    }
-
     var body: some View {
         NavigationView {
             VStack {
@@ -38,10 +34,8 @@ struct NewMovieView: View {
         Button {
             movieHandler.addMovie(movieName, category: movieCategory)
             presentationMode.wrappedValue.dismiss()
-        } label: {
-            Text("Add")
-        }
-        .disabled(movieName == "" || movieYear == "" || movieCategory == "")
+        } label: { Text("Add") }
+        .disabled(movieName == "" || movieCategory == "" || !movieYear.isNumeric() || movieCategory == "")
     }
     
     @State private var movieName: String = ""
@@ -58,9 +52,10 @@ struct NewMovieView: View {
         Section {
             TextField("", text: $movieYear)
                 .keyboardType(.decimalPad)
-        } header: {
-            Text("Year")
-        }
+                .onSubmit {
+                    if !movieYear.isNumeric() { movieYear = "" }
+                }
+        } header: { Text("Year") }
     }
 
     @State private var movieCategory: String = ""

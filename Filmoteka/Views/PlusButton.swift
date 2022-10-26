@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-/// Plus button which  present modally content View on tap gesture
 struct PlusButton<Content: View>: View {
     let width, height: CGFloat
     @State private var isPresentingNewMoviePopover = false

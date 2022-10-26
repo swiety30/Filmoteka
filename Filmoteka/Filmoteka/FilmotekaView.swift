@@ -27,7 +27,6 @@ struct FilmotekaView: View {
                                                 showTabBar: $showTabBar)
                 }
 
-                
                 if !showTabBar {
                     FilmotekaTabBar(viewRouter: viewRouter,
                                     size: CGSize(width: geometry.size.width,
@@ -37,6 +36,5 @@ struct FilmotekaView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }
-
     }
 }

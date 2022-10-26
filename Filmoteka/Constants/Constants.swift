@@ -19,11 +19,13 @@ struct Constants {
                                                    endPoint: .topTrailing)
         static let detailsBackground = Color(red: 191/255, green: 209/255, blue: 229/255)
         static let navigationBackground = UIColor(red: 84/255, green: 35/255, blue: 68/255, alpha: 0.6)
+
         struct TabBar {
             static let assignedTab = Color.black
             static let notAssignedTab = Color.white
             static let background = Color(red: 84/255, green: 35/255, blue: 68/255)
         }
+
         struct MovieCell {
             static let fontColor = Color.black
             static let background = Color(red: 235/255, green: 245/255, blue: 238/255)
@@ -49,8 +51,6 @@ struct Constants {
             static let dividerLineColor = Color.gray
             static let dividerTextColor = Color.black
             static let fontColor = Color.black
-
-
             struct WatchedButton {
                 static let fontColor = Color.black
                 static let backgroundColor = Color(red: 235/255, green: 245/255, blue: 238/255)
@@ -79,10 +79,12 @@ struct Constants {
                 static let shadow: CGFloat = 10
                 static let backgroundOpacity: CGFloat = 0.5
             }
+
             struct NotesSection {
                 static let corners: CGFloat = 20
             }
         }
+
         struct Banner {
             static let padding: CGFloat = 4
         }

@@ -5,23 +5,16 @@
 //  Created by Paweł Świątek on 20/10/2021.
 //
 
-import SwiftUI
+import Foundation
 
 class MoviesHandler: ObservableObject {
     @Published private var movies: [Movie] = [
-        Movie(name: "Movie Name", isWatched: false, category: "Default", rating: .two),
-        Movie(name: "Movie Name2", year: "2022", isWatched: false, category: "Default", rating: .one),
-        Movie(name: "Palma", isWatched: false, category: "New", rating: .five),
-        Movie(name: "Palmama", year: "2022", isWatched: false, category: "Newer", rating: .five)]
-
-
-    var allMovies: [Movie] {
-        movies
-    }
-
-    var allCategories: [Category] {
-        movies.map { $0.category }.uniqued()
-    }
+        Movie(name: "Tomb Raider", year: "2018", isWatched: false, category: "Action", rating: .three),
+        Movie(name: "High School Musical", year: "2000", isWatched: false, category: "Teen Drama", rating: .one),
+        Movie(name: "Mamma Mia!", year: "2005", isWatched: false, category: "Musical", rating: .five),
+        Movie(name: "Avengers: Infinity War", year: "2020", isWatched: false, isFavourite: true, category: "Marvel", rating: .five)]
+    var allMovies: [Movie] { movies }
+    var allCategories: [Category] { movies.map { $0.category }.uniqued() }
 
     // Intensions for Movies Repository
     func addMovie(_ named: String, isWatched: Bool = false, category: Category) {

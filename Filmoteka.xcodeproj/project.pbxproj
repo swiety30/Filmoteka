@@ -53,7 +53,7 @@
 		73CD71CA272D637400A8B593 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		73CD71CC272D692800A8B593 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 		73D4CBC52720A644001BBE2A /* Filmoteka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filmoteka.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		73D4CBC82720A644001BBE2A /* FilmotekaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaApp.swift; sourceTree = "<group>"; };
+		73D4CBC82720A644001BBE2A /* FilmotekaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilmotekaApp.swift; path = Filmoteka/FilmotekaApp.swift; sourceTree = "<group>"; };
 		73D4CBCA2720A644001BBE2A /* FilmotekaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmotekaView.swift; sourceTree = "<group>"; };
 		73D4CBCC2720A645001BBE2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73D4CBCF2720A645001BBE2A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -120,15 +120,15 @@
 			isa = PBXGroup;
 			children = (
 				73E2595D274ECFE80017272B /* Filmoteka */,
-				733E429C2773C33C0065ABB2 /* Constants */,
-				C6D7BA1027552D5C00C26008 /* Movies */,
 				C6D7BA0E27552D3200C26008 /* MoviesScrollView */,
-				73E25962274ED9A70017272B /* Helpers */,
-				7366C87D27332E7800F0C81B /* TabBar */,
 				73D4CBDA2720B45D001BBE2A /* Views */,
+				7366C87D27332E7800F0C81B /* TabBar */,
+				73E2595C274ECFDC0017272B /* MovieFilter */,
+				C6D7BA1027552D5C00C26008 /* Movies */,
+				733E429C2773C33C0065ABB2 /* Constants */,
+				73E25962274ED9A70017272B /* Helpers */,
 				73D4CBCC2720A645001BBE2A /* Assets.xcassets */,
 				73D4CBCE2720A645001BBE2A /* Preview Content */,
-				73E2595C274ECFDC0017272B /* MovieFilter */,
 			);
 			path = Filmoteka;
 			sourceTree = "<group>";
@@ -443,7 +443,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -475,7 +475,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
